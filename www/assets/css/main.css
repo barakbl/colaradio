@@ -1,0 +1,88 @@
+body {
+  padding-top: 50px;
+  background: #222222;
+  color: #d8d8d8;
+}
+.navbar-brand.wiser-icon {
+  background: url('../img/wiser_icon.png') no-repeat 5px center;
+  background-size: 40px;
+  padding-left: 50px;
+  color: white;
+}
+.sidebar {
+  position: fixed;
+  top: 51px;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  display: block;
+  padding: 20px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  /* Scrollable contents if viewport is shorter than content. */
+  background-color: #222222;
+}
+.nav-sidebar {
+  margin-right: -21px;
+  /* 20px padding + 1px border */
+  margin-bottom: 20px;
+  margin-left: -20px;
+}
+.nav-sidebar > li > a {
+  padding-right: 20px;
+  padding-left: 20px;
+  color: #f05a27;
+}
+.nav-sidebar > li > a:hover,
+.nav-sidebar > li > a:focus {
+  color: #222222;
+  background: #f05a27;
+}
+.nav-sidebar > .active > a,
+.nav-sidebar > .active > a:hover,
+.nav-sidebar > .active > a:focus {
+  color: #222222;
+  background-color: #f05a27;
+}
+.page-header {
+  margin: 20px 0 20px;
+}
+.metric-wrapper {
+  padding: 0;
+  text-align: center;
+  font-size: 14pt;
+}
+.colored-icon {
+  color: #f05a27;
+}
+.well {
+  color: black;
+}
+.well h3 {
+  margin: 0 0 15px;
+}
+.well textarea {
+  width: 100%;
+  height: 100px;
+  border-color: #f05a27;
+}
+.center-column {
+  float: none !important;
+  margin: 0 auto !important;
+}
+.login-well {
+  margin-top: 25px;
+}
+.login-well input {
+  margin-top: 10px;
+}
+.login-well input[type="submit"] {
+  display: block;
+  margin: 10px auto 0;
+}
+table#stores_table {
+  color: black;
+}
+table#stores_table th {
+  color: white;
+}

@@ -1,0 +1,17 @@
+{% set active = 'login' %}
+{% extends 'layout.twig' %}
+{% block sidebar %}{% endblock %}
+{% block main %}{% endblock %}
+{% block login %}
+    <div class="col-md-3 center-column">
+        <div class="well login-well">
+            <h3><span class="glyphicon glyphicon-user"></span> Login</h3>
+            <form action="{{ path('admin_login_check') }}" method="post">
+                {{ error }}
+                <input type="text" class="form-control input-sm" placeholder="Username" name="_username" value="{{ last_username }}" />
+                <input type="password" class="form-control input-sm" placeholder="Password" name="_password" value="" />
+                <input type="submit" class="btn btn-primary"/>
+            </form>
+        </div>
+    </div>
+{% endblock %}

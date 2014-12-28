@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    {% block head %}
+        <title>ColaRadio Dashboard</title>
+        <link href="{{ app.asset_path }}bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="{{ app.asset_path }}css/main.css" rel="stylesheet">
+    {% endblock %}
+</head>
+<body>
+{% block header %}
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand wiser-icon" href="/">ColaRadio Dashboard <span class="label label-success">BETA</span></a>
+            </div>
+        </div>
+    </nav>
+{% endblock %}
+
+<div class="container-fluid">
+    <div class="row">
+        {% block sidebar %}
+        <div class="col-md-2 sidebar">
+            {% include 'layout_parts/sidebar.twig' with {'active':active|default('overview')} %}
+        </div>
+        {% endblock %}
+        {% block main %}
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            {% block title %}<div class="page-header"><h1>{{ title|default(active)|capitalize }}</h1></div>{% endblock %}
+            {% block content %}{% endblock %}
+        </div>
+        {% endblock %}
+        {% block login %}{% endblock %}
+    </div>
+</div>
+
+{% block body_scripts %}
+    <script src="{{ app.asset_path }}js/jquery-2.1.3.min.js"></script>
+    <script src="{{ app.asset_path }}bootstrap/js/bootstrap.min.js"></script>
+{% endblock %}
+</body>
+</html>

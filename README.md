@@ -1,4 +1,6 @@
-colaradio
-=========
+ColaRadio - v1
 
-Cola Radio
+apache configuration must have:
+<Directory "/var/www/WiseAPI/dashboard/www/">
+ AllowOverride all
+</Directory>

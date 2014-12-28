@@ -1,0 +1,18 @@
+# routes.yml
+
+home:
+  path: /
+  defaults: { _controller: 'ColaRadio\DashboardController::indexAction' }
+
+login_form:
+  path: /login
+  defaults: { _controller: 'ColaRadio\DashboardController::loginAction' }
+
+
+api:
+  prefix: /api
+  resource: api.yml
+
+blog:
+  prefix: /blog
+  resource: blog.yml

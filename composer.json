@@ -1,0 +1,17 @@
+{
+    "require":{
+        "silex/silex":"1.0.*@dev",
+        "symfony/yaml":"v2.4.0",
+        "symfony/config":"v2.2.0",
+        "twig/twig": ">=1.8,<2.0-dev",
+        "taluu/doctrine-orm-provider": "1.0.*@dev",
+        "symfony/security": "~2.3",
+        "symfony/twig-bridge": "2.3.*",
+        "deralex/yaml-config-service-provider": "1.0.x-dev"
+    },
+    "autoload":{
+        "psr-0":{
+            "":"src/"
+        }
+    }
+}
