@@ -8,6 +8,8 @@ use Silex\Application;
 use \Doctrine\Common\Cache\ApcCache;
 use \Doctrine\Common\Cache\ArrayCache;
 use ColaRadio\Entity;
+use Symfony\Component\HttpFoundation\Request;
+
 
 $app = new Application();
 
@@ -43,6 +45,13 @@ $app->register(new Nutwerk\Provider\DoctrineORMServiceProvider(), array(
         'namespace' => 'ColaRadio\Entity', // your classes namespace
     )),
 ));
+
+$app->before(function (Request $request) {
+    if (0 === strpos($request->headers->get('Content-Type'), 'application/json')) {
+        $data = json_decode($request->getContent(), true);
+        $request->request->replace(is_array($data) ? $data : array());
+    }
+});
 
 $app->register(new Silex\Provider\SecurityServiceProvider(), array(
     $app['security.firewalls'] = array(

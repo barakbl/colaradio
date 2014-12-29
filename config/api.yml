@@ -1,5 +1,10 @@
 # config/api.yml
 
+api.add_playlist:
+  path:     /playlist/
+  defaults: { _controller: 'ColaRadio\ApiController::playlistPostAction'}
+  methods: [POST]
+
 api.playlist:
   path:     /playlist/{id}
   defaults: { _controller: 'ColaRadio\ApiController::playlistAction'}
@@ -15,3 +20,6 @@ api.user:
 api.my_user:
   path:     /user/
   defaults: { _controller: 'ColaRadio\ApiController::userAction',id:0}
+
+
+

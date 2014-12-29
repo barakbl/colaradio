@@ -10,6 +10,45 @@ namespace ColaRadio\Entity;
  */
 class PlaylistItem {
     /**
+     * @param mixed $content
+     */
+    public function setContent($content)
+    {
+        $this->content = $content;
+    }
+
+    /**
+     * @param mixed $is_deleted
+     */
+    public function setIsDeleted($is_deleted)
+    {
+        $this->is_deleted = $is_deleted;
+    }
+
+    /**
+     * @param mixed $playlist_id
+     */
+    public function setPlaylistId($playlist_id)
+    {
+        $this->playlist_id = $playlist_id;
+    }
+
+    /**
+     * @param mixed $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+
+    /**
+     * @param mixed $user_id
+     */
+    public function setUserId($user_id)
+    {
+        $this->user_id = $user_id;
+    }
+    /**
      * @Id @Column(type="integer")
      * @GeneratedValue
      */
