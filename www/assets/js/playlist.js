@@ -4,6 +4,8 @@
 $(document).ready(function() {
     $.getJSON('/api/playlist/')
         .done(function(apiData) {
+            Cola.playlistId = apiData.id;
+
             var params = {
                 id: function() {
                     var ids = [];
