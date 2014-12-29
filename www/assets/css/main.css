@@ -19,51 +19,8 @@ body {
 .btn-orange:hover {
   color: #e77800;
 }
-.sidebar {
-  position: fixed;
-  top: 51px;
-  bottom: 0;
-  left: 0;
-  z-index: 1000;
-  display: block;
-  padding: 20px;
-  overflow-x: hidden;
-  overflow-y: auto;
-  /* Scrollable contents if viewport is shorter than content. */
-  background-color: #ffffff;
-}
-.nav-sidebar {
-  margin-right: -21px;
-  /* 20px padding + 1px border */
-  margin-bottom: 20px;
-  margin-left: -20px;
-}
-.nav-sidebar > li > a {
-  padding-right: 20px;
-  padding-left: 20px;
-  color: #ffaa4e;
-}
-.nav-sidebar > li > a:hover,
-.nav-sidebar > li > a:focus {
-  color: #ffffff;
-  background: #ffaa4e;
-}
-.nav-sidebar > .active > a,
-.nav-sidebar > .active > a:hover,
-.nav-sidebar > .active > a:focus {
-  color: #ffffff;
-  background-color: #ffaa4e;
-}
-.page-header {
-  margin: 20px 0 20px;
-}
-.metric-wrapper {
-  padding: 0;
-  text-align: center;
-  font-size: 14pt;
-}
-.colored-icon {
-  color: #ffaa4e;
+.main {
+  padding-top: 10px;
 }
 .well {
   color: black;
@@ -90,9 +47,40 @@ body {
   display: block;
   margin: 20px auto 0;
 }
-table#stores_table {
-  color: black;
+.playlist-container .list {
+  list-style: none;
+  padding: 0;
 }
-table#stores_table th {
-  color: white;
+.playlist-container .list .song {
+  background: #F5F5F5;
+  border: 1px solid #E3E3E3;
+  margin: 10px 0;
+  padding: 5px;
+}
+.playlist-container .list .song .song-img {
+  display: inline-block;
+  width: 70px;
+  height: 70px;
+  border: 1px solid #ffaa4e;
+  vertical-align: middle;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.playlist-container .list .song-details {
+  display: inline-block;
+  vertical-align: top;
+  padding-left: 20px;
+}
+.playlist-container .list .song-details .song-name {
+  font-weight: 700;
+  font-size: 16pt;
+}
+.playlist-container .list .song-type {
+  display: inline-block;
+  float: right;
+  height: 70px;
+}
+.playlist-container .list .song-type.yt {
+  width: 70px;
+  background: url("../img/yt-logo.png") no-repeat bottom / contain;
 }

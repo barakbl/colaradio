@@ -6,14 +6,13 @@ use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query\ResultSetMapping;
 use Doctrine\DBAL\Types\Type;
 
-class StoreDailyStatus extends EntityRepository {
+class Playlist extends EntityRepository {
 
     /**
-     * this is stupid placeholder
-     * @return string
+     * @return array
      */
-    public function getCount() {
-        return "1";
+    public function getPlatlistItems() {
+        return array();
     }
 
 }

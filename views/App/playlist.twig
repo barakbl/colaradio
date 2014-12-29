@@ -1,0 +1,29 @@
+{% extends 'layout.twig' %}
+{%  macro item(name,artist,img,type) %}
+    <li>
+        <div class="song">
+            <div class="song-img" style="background-image: url('{{ img|default('http://www.nefertititokyo.net/wp-content/uploads/2013/10/6556115-ice-cube-droped-in-cola-glass-and-cola-splashing.jpg') }}')"></div>
+            <div class="song-details">
+                <div class="song-name">{{ name|capitalize }}</div>
+                <div class="song-artist">{{ artist|capitalize }}</div>
+            </div>
+            <div class="song-type {{ type|default('') }}"></div>
+        </div>
+    </li>
+{% endmacro %}
+{% import _self as playlist %}
+{% block content %}
+<div class="playlist-container">
+    <ul class="sortable list">
+        {{ playlist.item('shitty song','justin bieber','','yt') }}
+        {{ playlist.item('let it be','beatles','','yt') }}
+    </ul>
+</div>
+{% endblock %}
+
+{% block body_scripts %}
+{{ parent() }}
+    <script>
+        $('.sortable').sortable();
+    </script>
+{% endblock %}

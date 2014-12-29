@@ -8,6 +8,10 @@ login_form:
   path: /login
   defaults: { _controller: 'ColaRadio\AppController::loginAction' }
 
+playlist:
+  path: /playlist
+  defaults: { _controller: 'ColaRadio\AppController::playlistAction' }
+
 
 api:
   prefix: /api
