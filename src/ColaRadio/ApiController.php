@@ -44,11 +44,20 @@ class ApiController
             );
         }
 
+        $room = $app['db.orm.em']->getRepository('ColaRadio\Entity\Rooms')
+            ->findOneBy(array('id' => $user->userRoomId));
+        $roomData = array(
+            'id' => $room->getId(),
+            'name' => $room->getName(),
+            'motd' => $room->getMotd()
+
+        );
         $obj = array(
             'id' => $result->getId(),
             'name' => $result->getName(),
             'description' => $result->getDescription(),
-            'items' => $items
+            'items' => $items,
+            'room' => $roomData
         );
         return  $app->json($obj);
     }
@@ -103,5 +112,25 @@ class ApiController
 
     }
 
+    public function motdPostAction(Application $app, Request $request) {
+        $content = $request->get('content');
+        if(empty($content)) {
+            return $app->json("where is the content, bitch?", 500);
+        }
+        $token = $app['security']->getToken();
+        if (null !== $token) {
+            $user = $token->getUser();
+        } else {
+            return $app->json("Access Denied", 401);
+        }
+        $room = $app['db.orm.em']->getRepository('ColaRadio\Entity\Rooms')
+            ->findOneBy(array('id' => $user->userRoomId));
+
+        $room->setId($user->userRoomId);
+        $room->setMotd($content);
+        $app['db.orm.em']->merge($room);
+        $app['db.orm.em']->flush();
+        return "{}";
+    }
 
 }

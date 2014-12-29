@@ -22,5 +22,9 @@ api.my_user:
   path:     /user
   defaults: { _controller: 'ColaRadio\ApiController::userAction',id:0}
 
+api.motd:
+  path:     /motd
+  defaults: { _controller: 'ColaRadio\ApiController::motdPostAction'}
+  methods: [POST]
 
 
