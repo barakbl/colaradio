@@ -43,7 +43,6 @@ $app->register(new Nutwerk\Provider\DoctrineORMServiceProvider(), array(
     )),
 ));
 
-$repository = $app['db.orm.em']->getRepository('ColaRadio\Entity\StoreDailyStatus');
 
 
 
