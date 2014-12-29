@@ -1,3 +1,5 @@
+CREATE DATABASE colaradio;
+
 CREATE TABLE IF NOT EXISTS `playlist_item` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `playlist_id` int(11) DEFAULT NULL,
@@ -39,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO analytics.users (id, username, password, roles) VALUES (1, 'admin', '5FZ2Z8QIkA7UTZ4BYkoC+GsReLf569mSKDsfods6LYQ8t+a8EW9oaircfMpmaLbPBh4FOBiiFyLfuZmTSUwzZg==', 'ROLE_ADMIN');
-INSERT INTO analytics.users (id, username, password, roles) VALUES (2, 'barak', '5FZ2Z8QIkA7UTZ4BYkoC+GsReLf569mSKDsfods6LYQ8t+a8EW9oaircfMpmaLbPBh4FOBiiFyLfuZmTSUwzZg==', 'ROLE_USER');
-INSERT INTO analytics.users (id, username, password, roles) VALUES (3, 'noam', '5FZ2Z8QIkA7UTZ4BYkoC+GsReLf569mSKDsfods6LYQ8t+a8EW9oaircfMpmaLbPBh4FOBiiFyLfuZmTSUwzZg==', 'ROLE_USER');
-INSERT INTO analytics.users (id, username, password, roles) VALUES (4, 'chen', '5FZ2Z8QIkA7UTZ4BYkoC+GsReLf569mSKDsfods6LYQ8t+a8EW9oaircfMpmaLbPBh4FOBiiFyLfuZmTSUwzZg==', 'ROLE_USER');
+INSERT INTO users (id, username, password, roles) VALUES (1, 'admin', '5FZ2Z8QIkA7UTZ4BYkoC+GsReLf569mSKDsfods6LYQ8t+a8EW9oaircfMpmaLbPBh4FOBiiFyLfuZmTSUwzZg==', 'ROLE_ADMIN');
+INSERT INTO users (id, username, password, roles) VALUES (2, 'barak', '5FZ2Z8QIkA7UTZ4BYkoC+GsReLf569mSKDsfods6LYQ8t+a8EW9oaircfMpmaLbPBh4FOBiiFyLfuZmTSUwzZg==', 'ROLE_USER');
+INSERT INTO users (id, username, password, roles) VALUES (3, 'noam', '5FZ2Z8QIkA7UTZ4BYkoC+GsReLf569mSKDsfods6LYQ8t+a8EW9oaircfMpmaLbPBh4FOBiiFyLfuZmTSUwzZg==', 'ROLE_USER');
+INSERT INTO users (id, username, password, roles) VALUES (4, 'chen', '5FZ2Z8QIkA7UTZ4BYkoC+GsReLf569mSKDsfods6LYQ8t+a8EW9oaircfMpmaLbPBh4FOBiiFyLfuZmTSUwzZg==', 'ROLE_USER');
