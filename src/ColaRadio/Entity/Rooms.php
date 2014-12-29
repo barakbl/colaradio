@@ -1,5 +1,5 @@
 <?php
-// src/ColaRadio/Entity/StoreDailyStatus.php
+// src/ColaRadio/Entity/Rooms.php
 namespace ColaRadio\Entity;
 
 /**
