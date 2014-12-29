@@ -15,11 +15,13 @@
 </div>
 {% endblock %}
 {% block body_scripts %}
+    <script type="text/javascript" src="{{ app.asset_path }}/js/utils.js"></script>
     <script type="text/javascript" src="//www.youtube.com/iframe_api"></script>
     <script type="text/javascript" src="{{ app.asset_path }}/js/typeahead.bundle.js"></script>
     <script type="text/javascript" src="{{ app.asset_path }}/js/cola.js"></script>
     <script type="text/javascript" src="{{ app.asset_path }}/js/youtube-autocomplete.js"></script>
     <script type="text/javascript" src="{{ app.asset_path }}/js/player.js"></script>
+    <script type="text/javascript" src="{{ app.asset_path }}/js/playlist.js"></script>
 {% endblock %}
 {% block body_styles %}
     <link href="{{ app.asset_path }}/css/typeahead.bundle.css" rel="stylesheet">

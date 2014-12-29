@@ -11,7 +11,6 @@ function onPlayerReady(event) {
 var done = false;
 
 function onPlayerStateChange(event) {
-    console.log(event);
     if (event.data == YT.PlayerState.ENDED) {
         Cola.playNext();
     }

@@ -89,7 +89,7 @@ body {
   height: 70px;
   opacity: 0.4;
 }
-.playlist-container .list .song-type.yt {
+.playlist-container .list .song-type.youtube {
   width: 70px;
   background: url("../img/yt-logo.png") no-repeat center / contain;
 }

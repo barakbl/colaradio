@@ -1,9 +1,8 @@
 $(document).ready(function() {
-    var apiKey = 'AIzaSyDe9-rzJD8Zdak_LWhhiF6nWSVHIU_BY0I';
     var $input = $('#pli-search');
     var url = 'https://www.googleapis.com/youtube/v3/search';
     var data = {
-        key: apiKey,
+        key: Cola.apiKey,
         part: 'snippet',
         q: '%QUERY',
         maxResults: 9
