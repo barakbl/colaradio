@@ -20,4 +20,7 @@ class AppController
             'name' => "homepage",
         ));
     }
+    public function playlistAction(Application $app) {
+        return $app['twig']->render('App/playlist.twig');
+    }
 }
