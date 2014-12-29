@@ -34,6 +34,7 @@ $(document).ready(function() {
     $('.playlist-container').on('click', '.song', function() {
         Cola.playSelectedVideo($(this));
     });
+
     //Controllers
     $('.controller.next').on('click',function() {
         Cola.playNext();

@@ -36,7 +36,7 @@ function Cola() {
 
         $currentSong.removeClass('playing');
         nextSong.addClass('playing');
-        window.ytPlayer.loadVideoById({
+        Cola.ytPlayer.loadVideoById({
             videoId: videoId
         });
         Cola.playing(true);
