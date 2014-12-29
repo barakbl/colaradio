@@ -28,6 +28,7 @@ $(document).ready(function() {
                     // item.snippet.thumbnails.high.url
                     items.push({
                         id: item.id.videoId,
+                        url: 'http://www.youtube.com/watch?v=' + item.id.videoId,
                         thumbnail: item.snippet.thumbnails.default.url,
                         title: item.snippet.title
                     });

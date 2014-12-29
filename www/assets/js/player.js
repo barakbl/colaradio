@@ -1,9 +1,22 @@
-function onYouTubePlayerReady(playerId) {
-    ytplayer = $("#myytplayer");
+window.ytPlayer = null;
+
+function onYouTubeIframeAPIReady() {
+    Cola.playFirst();
 }
-$(document).ready(function() {
-    var apiKey = 'AIzaSyDe9-rzJD8Zdak_LWhhiF6nWSVHIU_BY0I';
-    if (ytplayer) {
-        ytplayer.playVideo();
+
+function onPlayerReady(event) {
+    event.target.playVideo();
+}
+
+var done = false;
+
+function onPlayerStateChange(event) {
+    console.log(event);
+    if (event.data == YT.PlayerState.ENDED) {
+        Cola.playNext();
     }
-});
+}
+
+function stopVideo() {
+    window.ytPlayer.stopVideo();
+}

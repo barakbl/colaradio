@@ -1,21 +1,18 @@
-{%  macro item(name,artist,img,type) %}
-    <li>
-        <div class="song">
-            <div class="song-img" style="background-image: url('{{ img|default('http://www.nefertititokyo.net/wp-content/uploads/2013/10/6556115-ice-cube-droped-in-cola-glass-and-cola-splashing.jpg') }}')"></div>
-            <div class="song-details">
-                <div class="song-name">{{ name|capitalize }}</div>
-                <div class="song-artist">{{ artist|capitalize }}</div>
-            </div>
-            <div class="song-type {{ type|default('') }}"></div>
+{%  macro item(url,name,img,type) %}
+    <li class="song" data-video-url="{{ url }}">
+        <div class="song-img" style="background-image: url('{{ img|default('http://www.nefertititokyo.net/wp-content/uploads/2013/10/6556115-ice-cube-droped-in-cola-glass-and-cola-splashing.jpg') }}')"></div>
+        <div class="song-details">
+            <div class="song-name">{{ name|capitalize }}</div>
         </div>
+        <div class="song-type {{ type|default('') }}"></div>
     </li>
 {% endmacro %}
 {% import _self as playlist %}
 <div class="playlist-container">
     <ul class="sortable list">
-        {{ playlist.item('shitty song','justin bieber','','yt') }}
-        {{ playlist.item('let it be','beatles','','yt') }}
-        {{ playlist.item('let it be2','beatles','','yt') }}
-        {{ playlist.item('let it be3','beatles','','yt') }}
+        {{ playlist.item('http://www.youtube.com/watch?v=Hy-5d4r_6Y8', 'yeah - usher','','yt') }}
+        {{ playlist.item('http://www.youtube.com/watch?v=Hy-5d4r_6Y8', 'let it be - beatles','','yt') }}
+        {{ playlist.item('http://www.youtube.com/watch?v=Hy-5d4r_6Y8', 'let it be2 - beatles','','yt') }}
+        {{ playlist.item('http://www.youtube.com/watch?v=Hy-5d4r_6Y8', 'let it be3 - beatles','','yt') }}
     </ul>
 </div>
