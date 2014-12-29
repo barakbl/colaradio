@@ -5,7 +5,9 @@ $(document).ready(function() {
         key: Cola.apiKey,
         part: 'snippet',
         q: '%QUERY',
-        maxResults: 9
+        maxResults: 9,
+        videoEmbeddable: true,
+        type: 'video'
     };
 
     var reqUrl = url + '?' + $.param(data).replace('%25QUERY', '%QUERY');
