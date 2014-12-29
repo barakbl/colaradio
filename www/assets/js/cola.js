@@ -6,13 +6,14 @@ function Cola() {
     this.songListReady = false;
     this.ytPlayer = null;
     this.playlistId = null;
+    this.statsInterval = null;
 
     this.playFirst = function() {
         if (this.songListReady) {
             var $firstSong = $('.song:first');
             var videoId = this.getVideoIdFromUrl($firstSong.data('videoUrl'));
 
-            this.ytPlayer = new YT.Player('player', {
+            var options = {
                 height: 300,
                 width: 550,
                 videoId: videoId,
@@ -20,9 +21,27 @@ function Cola() {
                     'onReady': onPlayerReady,
                     'onStateChange': onPlayerStateChange
                 }
-            });
+            };
 
-            $firstSong.addClass('playing');
+            var stats = Cola.getStats();
+            if (stats) {
+                options.videoId = stats.id;
+                options.playerVars = {
+                    start: parseInt(stats.time)
+                };
+
+                $('.song.playing').removeClass('playing');
+                $('.song[data-video-url*=' + stats.id + ']:first').addClass('playing');
+            }
+
+            this.ytPlayer = new YT.Player('player', options);
+
+            if (!stats) {
+                $firstSong.addClass('playing');
+            } else {
+                Cola.ytPlayer.seekTo(parseInt(stats.time));
+            }
+            Cola.setStats();
         } else {
             setTimeout(function() {
                 Cola.playFirst();
@@ -148,7 +167,26 @@ function Cola() {
         } else {
             Cola.play();
         }
-    }
+    };
+
+    this.setStats = function() {
+        Cola.statsInterval = window.setInterval(function() {
+            var date = new Date();
+            var expiry = date.setHours(date.getHours() + 1);
+            document.cookie = 'video_id=' + $('.song.playing').data('videoUrl') + '; expires=' + expiry;
+            document.cookie = 'video_time=' + Cola.ytPlayer.getCurrentTime();
+        }, 1000);
+    };
+
+    this.getStats = function() {
+        if (getCookie('video_id') && getCookie('video_time')) {
+            return {
+                id: getCookie('video_id'),
+                time: getCookie('video_time')
+            };
+        }
+        return null;
+    };
 }
 window.Cola = new Cola();
 
