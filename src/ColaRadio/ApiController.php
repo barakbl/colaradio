@@ -17,21 +17,19 @@ class ApiController
     }
 
     public function playlistAction(Application $app) {
-        $obj = array();
 
         $token = $app['security']->getToken();
-        $playlistId = 1;
         if (null !== $token) {
             $user = $token->getUser();
-
-
         } else {
             return $app->json("Access Denied", 401);
         }
-        $result = $app['db.orm.em']
-            ->find('ColaRadio\Entity\Playlist',$playlistId);
-
+        $result = $app['db.orm.em']->getRepository('ColaRadio\Entity\Playlist')
+            ->findOneBy(array('room_id' => $user->userRoomId));
         $items = array();
+
+        $playlistId  = $result->getId();
+
 
 
         $itemsRes = $app['db.orm.em']->getRepository('ColaRadio\Entity\PlaylistItem')
@@ -104,4 +102,6 @@ class ApiController
         }
 
     }
+
+
 }

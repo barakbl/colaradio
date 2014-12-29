@@ -44,3 +44,6 @@ INSERT INTO users (id, username, password, roles) VALUES (1, 'admin', '5FZ2Z8QIk
 INSERT INTO users (id, username, password, roles) VALUES (2, 'barak', '5FZ2Z8QIkA7UTZ4BYkoC+GsReLf569mSKDsfods6LYQ8t+a8EW9oaircfMpmaLbPBh4FOBiiFyLfuZmTSUwzZg==', 'ROLE_USER');
 INSERT INTO users (id, username, password, roles) VALUES (3, 'noam', '5FZ2Z8QIkA7UTZ4BYkoC+GsReLf569mSKDsfods6LYQ8t+a8EW9oaircfMpmaLbPBh4FOBiiFyLfuZmTSUwzZg==', 'ROLE_USER');
 INSERT INTO users (id, username, password, roles) VALUES (4, 'chen', '5FZ2Z8QIkA7UTZ4BYkoC+GsReLf569mSKDsfods6LYQ8t+a8EW9oaircfMpmaLbPBh4FOBiiFyLfuZmTSUwzZg==', 'ROLE_USER');
+
+
+ALTER TABLE  `users` ADD  `room_id` INT( 10 ) NOT NULL ;
