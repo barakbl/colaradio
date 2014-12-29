@@ -1,7 +1,21 @@
 @orange: #ffaa4e;
+//@orange: #ffe0a7;
 
 @sidebar-selection: @orange;
 @header-color: @orange;
 @btn-orange: @orange;
+@song-color: #F5F5F5;
+@song-border: #E3E3E3;
 @background: #ffffff;
 @text: #000;
+@search-button: #0043ff;
+
+.gradient(@top, @bottom, @from: 0%, @to: 100%) {
+  background: @top; /* Old browsers */
+  background: -moz-linear-gradient(top,  @top @from, @bottom @to); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(@from,@top), color-stop(@to,@bottom)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  @top @from,@bottom @to); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  @top @from,@bottom @to); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  @top @from,@bottom @to); /* IE10+ */
+  background: linear-gradient(to bottom,  @top @from,@bottom @to); /* W3C */
+}

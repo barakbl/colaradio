@@ -16,11 +16,6 @@ class AppController
     }
 
     public function indexAction(Application $app) {
-        return $app['twig']->render('App/home.twig', array(
-            'name' => "homepage",
-        ));
-    }
-    public function playlistAction(Application $app) {
-        return $app['twig']->render('App/playlist.twig');
+        return $app['twig']->render('App/main.twig');
     }
 }
