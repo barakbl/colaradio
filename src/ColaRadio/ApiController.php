@@ -2,7 +2,10 @@
 
 namespace ColaRadio;
 
+use ColaRadio\Repositories\PlaylistItem;
+use Doctrine\Tests\Common\Annotations\Ticket\Doctrine\ORM\Mapping\Entity;
 use Doctrine\Tests\Models\Quote\User;
+use Silex\RequestContext;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Silex\Application;
@@ -65,5 +68,40 @@ class ApiController
         }
         $obj = array();
         return  $app->json($obj);
+    }
+
+    public function playlistItemPostAction(Application $app, Request $request) {
+        $content = $request->get('content');
+        if(empty($content)) {
+            return $app->json("bad url", 500);
+        }
+        $type = $request->get('type');
+        if(empty($type) || $type != 'youtube') {
+            return $app->json("not youtube bitch?", 500);
+        }
+
+        $playlistId = $request->get('playlist_id');
+        if(empty($type) || !$playlistId > 0) {
+            return $app->json("not youtube bitch?", 500);
+        }
+
+        $token = $app['security']->getToken();
+        if (null !== $token) {
+
+            $list = new \ColaRadio\Entity\PlaylistItem();
+            $list->setPlaylistId($playlistId);
+            $list->setContent($content);
+            $list->setUserId(1);
+            $list->setIsDeleted(0);
+
+            $list->setType($type);
+            $app['db.orm.em']->persist($list);
+            $app['db.orm.em']->flush();
+
+            return $app->json($list);
+        } else {
+            return $app->json("Access Denied", 401);
+        }
+
     }
 }
