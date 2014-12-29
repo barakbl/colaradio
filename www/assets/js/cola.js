@@ -29,7 +29,7 @@ function Cola() {
 
     this.playNext = function() {
         var $currentSong = $('.song.playing');
-        var $nextSong = $currentSong.next('.song') || $('.song:first');
+        var $nextSong = $currentSong.next('.song').length ? $currentSong.next('.song') : $('.song:first');
         var videoId = this.getVideoIdFromUrl($nextSong.data('videoUrl'));
 
         $currentSong.removeClass('playing');
@@ -42,8 +42,9 @@ function Cola() {
 
     this.playPrevious = function() {
         var $currentSong = $('.song.playing');
-        var $nextSong = $currentSong.prev('.song') || $currentSong;
-        var videoId = getVideoIdFromUrl($nextSong.data('videoUrl'));
+        var $nextSong = $currentSong.prev('.song').length ? $currentSong.prev('.song') : $('.song:last');
+        console.log($nextSong);
+        var videoId = this.getVideoIdFromUrl($nextSong.data('videoUrl'));
 
         $currentSong.removeClass('playing');
         $nextSong.addClass('playing');
