@@ -46,15 +46,6 @@
   font-size: 18px;
   line-height: 24px;
   cursor: pointer;
-  float: left;
-  width: 33.3%;
-}
-.tt-suggestion.tt-cursor {
-  color: #fff;
-  background-color: #ffaa4e;
-}
-.tt-suggestion p {
-  margin: 0;
 }
 .tt-input {
   margin-right: 50px;
@@ -110,5 +101,25 @@
   .tt-hint,
   .tt-dropdown-menu {
     width: 100%;
+  }
+}
+@media screen and (min-device-width: 768px) {
+  .tt-suggestion {
+    float: left;
+    width: 33.3%;
+    height: 100px;
+    max-height: 100px;
+    overflow: hidden;
+  }
+  .tt-suggestion.tt-cursor {
+    color: #fff;
+    background-color: #ffaa4e;
+  }
+  .tt-suggestion .yt-result-thumb {
+    margin-right: 5px;
+    float: left;
+  }
+  .tt-suggestion .yt-result-title {
+    font-size: 13pt;
   }
 }

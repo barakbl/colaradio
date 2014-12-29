@@ -14,11 +14,11 @@ $(document).ready(function() {
     var youtubeSuggestions = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
         queryTokenizer: Bloodhound.tokenizers.whitespace,
+        limit: 9,
         remote: {
             url: reqUrl,
             filter: function(data) {
                 var items = [];
-                console.log(data);
                 for (var i in data.items) {
                     var item = data.items[i];
                     // item.id.videoId
@@ -42,16 +42,14 @@ $(document).ready(function() {
     $input.typeahead(null, {
         name: 'youtube-suggestions',
         displayKey: 'value',
-        limit: 9,
         source: youtubeSuggestions.ttAdapter(),
         templates: {
-            suggestion: function(item, b, c) {
-                console.log([item, b, c]);
-                console.log(this);
+            suggestion: function(item) {
+                console.log(item);
                 return [
                     '<div class="yt-suggestion">',
-                    '<img src="' + item.thumbnail + '" />',
-                    item.title,
+                    '<img class="yt-result-thumb" src="' + item.thumbnail + '" />',
+                    '<span class="yt-result-title">' + item.title + '</span>',
                     '</div>'
                 ].join('\n')
             }
