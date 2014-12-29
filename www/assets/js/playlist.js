@@ -2,7 +2,7 @@
  * Created by chenasraf on 12/29/14.
  */
 $(document).ready(function() {
-    $.getJSON('/api/playlist/')
+    $.getJSON('/api/playlist')
         .done(function(apiData) {
             Cola.playlistId = apiData.id;
 
