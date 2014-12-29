@@ -70,7 +70,7 @@ class ApiController
         return  $app->json($obj);
     }
 
-    public function playlistPostAction(Application $app, Request $request) {
+    public function playlistItemPostAction(Application $app, Request $request) {
         $content = $request->get('content');
         if(empty($content)) {
             return $app->json("bad url", 500);
