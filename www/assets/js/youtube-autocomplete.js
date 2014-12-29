@@ -1,9 +1,8 @@
 $(document).ready(function() {
-    var apiKey = 'AIzaSyDe9-rzJD8Zdak_LWhhiF6nWSVHIU_BY0I';
     var $input = $('#pli-search');
     var url = 'https://www.googleapis.com/youtube/v3/search';
     var data = {
-        key: apiKey,
+        key: Cola.apiKey,
         part: 'snippet',
         q: '%QUERY',
         maxResults: 9
@@ -28,6 +27,7 @@ $(document).ready(function() {
                     // item.snippet.thumbnails.high.url
                     items.push({
                         id: item.id.videoId,
+                        url: 'http://www.youtube.com/watch?v=' + item.id.videoId,
                         thumbnail: item.snippet.thumbnails.default.url,
                         title: item.snippet.title
                     });

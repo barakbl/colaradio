@@ -1,14 +1,28 @@
 {% extends 'layout.twig' %}
 {% block content %}
 <div class="container">
+    <div id="search-container">
+        <input id="pli-search" class="typeahead" type="text" placeholder="Add a song to the playlist"/>
+    </div>
     <div class="col-md-6">
         {% include 'App/playlist.twig' %}
     </div>
     <div class="col-md-6">
         <div class="player-container">
-            {#<iframe id="ytplayer"#}
-                    {#src="https://www.youtube.com/embed/M7lc1UVf-VE?enablejsapi=1"/>#}
+            <div id="player"></div>
         </div>
     </div>
 </div>
+{% endblock %}
+{% block body_scripts %}
+    <script type="text/javascript" src="{{ app.asset_path }}/js/utils.js"></script>
+    <script type="text/javascript" src="//www.youtube.com/iframe_api"></script>
+    <script type="text/javascript" src="{{ app.asset_path }}/js/typeahead.bundle.js"></script>
+    <script type="text/javascript" src="{{ app.asset_path }}/js/cola.js"></script>
+    <script type="text/javascript" src="{{ app.asset_path }}/js/youtube-autocomplete.js"></script>
+    <script type="text/javascript" src="{{ app.asset_path }}/js/player.js"></script>
+    <script type="text/javascript" src="{{ app.asset_path }}/js/playlist.js"></script>
+{% endblock %}
+{% block body_styles %}
+    <link href="{{ app.asset_path }}/css/typeahead.bundle.css" rel="stylesheet">
 {% endblock %}
