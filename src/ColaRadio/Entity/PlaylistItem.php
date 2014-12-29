@@ -5,6 +5,8 @@ namespace ColaRadio\Entity;
 /**
  * @Entity (repositoryClass="ColaRadio\Repositories\PlaylistItem")
  * @Table(name="playlist_item")
+ * @ManyToOne(targetEntity="Playlist")
+ * @JoinColumn(name="playlist_id", referencedColumnName="id")
  */
 class PlaylistItem {
     /**

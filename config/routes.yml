@@ -16,7 +16,3 @@ playlist:
 api:
   prefix: /api
   resource: api.yml
-
-blog:
-  prefix: /blog
-  resource: blog.yml

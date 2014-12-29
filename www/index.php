@@ -44,9 +44,6 @@ $app->register(new Nutwerk\Provider\DoctrineORMServiceProvider(), array(
 ));
 
 
-
-
-
 $app->register(new Silex\Provider\SecurityServiceProvider(), array(
     $app['security.firewalls'] = array(
         'login_path' => array(

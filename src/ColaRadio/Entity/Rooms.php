@@ -5,6 +5,8 @@ namespace ColaRadio\Entity;
 /**
  * @Entity (repositoryClass="ColaRadio\Repositories\Rooms")
  * @Table(name="rooms")
+ * @OneToOne(targetEntity="Users")
+ * @JoinColumn(name="user_id", referencedColumnName="id")
  */
 class Rooms {
     /**
@@ -21,9 +23,9 @@ class Rooms {
      */
     private $motd;
 
-    /**
-     *  @Column(datetime)
-     */
-    private $created_at;
+
+
+    public function getId() { return $this->id; }
+    public function getName() { return $this->name; }
 
 }

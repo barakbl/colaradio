@@ -1,5 +1,17 @@
 # config/api.yml
 
-api.list:
-  path:     /list
-  defaults: { _controller: 'ColaRadio\ApiController::listAction' }
+api.playlist:
+  path:     /playlist/{id}
+  defaults: { _controller: 'ColaRadio\ApiController::playlistAction'}
+
+api.my_playlist:
+  path:     /playlist/
+  defaults: { _controller: 'ColaRadio\ApiController::playlistAction', id:0}
+
+api.user:
+  path:     /user/{id}
+  defaults: { _controller: 'ColaRadio\ApiController::userAction'}
+
+api.my_user:
+  path:     /user/
+  defaults: { _controller: 'ColaRadio\ApiController::userAction',id:0}
