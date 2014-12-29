@@ -5,6 +5,11 @@ api.add_playlist:
   defaults: { _controller: 'ColaRadio\ApiController::playlistItemPostAction'}
   methods: [POST]
 
+api.remove_playlist:
+  path:     /playlist/item/{id}
+  defaults: { _controller: 'ColaRadio\ApiController::playlistItemDeleteAction'}
+  methods: [DELETE]
+
 api.playlist:
   path:     /playlist/{id}
   defaults: { _controller: 'ColaRadio\ApiController::playlistAction'}

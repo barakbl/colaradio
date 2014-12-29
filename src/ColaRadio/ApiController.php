@@ -133,4 +133,24 @@ class ApiController
         return "{}";
     }
 
+    public function playlistItemDeleteAction($id,Application $app, Request $request) {
+        $token = $app['security']->getToken();
+        if (null !== $token) {
+            $user = $token->getUser();
+        } else {
+            return $app->json("Access Denied", 401);
+        }
+        $result = $app['db.orm.em']->getRepository('ColaRadio\Entity\PlaylistItem')
+            ->findOneBy(array('id' => $id));
+        $result->setIsDeleted(1);
+        if($result->getUserId() ==$user->id ) {
+            $app['db.orm.em']->persist($result);
+            $app['db.orm.em']->flush();
+        } else {
+            return $app->json("Access Denied", 401);
+        }
+
+        return $app->json("{}");
+
+    }
 }

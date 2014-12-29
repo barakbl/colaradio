@@ -80,7 +80,11 @@ class PlaylistItem {
     public function getName() { return $this->name; }
     public function getContent() { return $this->content; }
     public function getId() { return $this->id; }
+    public function getIsDeleted() { return $this->is_deleted; }
+
     public function getType() { return $this->type; }
+    public function setId($id) {  $this->id = $id; }
+    public function getUserId() { return $this->user_id; }
 
 
 }
