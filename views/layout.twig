@@ -12,22 +12,15 @@
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand wiser-icon" href="/">ColaRadio Dashboard <span class="label label-success">BETA</span></a>
+                <a class="navbar-brand" href="/">ColaRadio!</a>
             </div>
         </div>
     </nav>
 {% endblock %}
 
 <div class="container-fluid">
-    <div class="row">
-        {% block sidebar %}
-        <div class="col-md-2 sidebar">
-            {% include 'layout_parts/sidebar.twig' with {'active':active|default('overview')} %}
-        </div>
-        {% endblock %}
         {% block main %}
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            {% block title %}<div class="page-header"><h1>{{ title|default(active)|capitalize }}</h1></div>{% endblock %}
+        <div class="main">
             {% block content %}{% endblock %}
         </div>
         {% endblock %}

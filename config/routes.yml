@@ -2,11 +2,11 @@
 
 home:
   path: /
-  defaults: { _controller: 'ColaRadio\DashboardController::indexAction' }
+  defaults: { _controller: 'ColaRadio\AppController::indexAction' }
 
 login_form:
   path: /login
-  defaults: { _controller: 'ColaRadio\DashboardController::loginAction' }
+  defaults: { _controller: 'ColaRadio\AppController::loginAction' }
 
 
 api:

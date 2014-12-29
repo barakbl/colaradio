@@ -17,7 +17,7 @@ $app['debug'] = 1;
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
     'twig.path' => __DIR__.'/../views',
 ));
-$app['asset_path'] = 'assets/';
+$app['asset_path'] = '/assets/';
 
 
 $app->register(new DerAlex\Silex\YamlConfigServiceProvider(__DIR__ . '/../config/app.yml'));

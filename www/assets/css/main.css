@@ -1,13 +1,23 @@
 body {
   padding-top: 50px;
-  background: #222222;
-  color: #d8d8d8;
+  background: #ffffff;
+  color: #000000;
 }
-.navbar-brand.wiser-icon {
-  background: url('../img/wiser_icon.png') no-repeat 5px center;
-  background-size: 40px;
-  padding-left: 50px;
+.navbar-inverse {
+  background: #ffaa4e !important;
+  border: 0;
+}
+.navbar-inverse .navbar-brand {
+  padding-left: 20px;
   color: white;
+}
+.btn-orange {
+  background: #ffaa4e;
+  border-color: #e77800;
+  color: #ffffff;
+}
+.btn-orange:hover {
+  color: #e77800;
 }
 .sidebar {
   position: fixed;
@@ -20,7 +30,7 @@ body {
   overflow-x: hidden;
   overflow-y: auto;
   /* Scrollable contents if viewport is shorter than content. */
-  background-color: #222222;
+  background-color: #ffffff;
 }
 .nav-sidebar {
   margin-right: -21px;
@@ -31,18 +41,18 @@ body {
 .nav-sidebar > li > a {
   padding-right: 20px;
   padding-left: 20px;
-  color: #f05a27;
+  color: #ffaa4e;
 }
 .nav-sidebar > li > a:hover,
 .nav-sidebar > li > a:focus {
-  color: #222222;
-  background: #f05a27;
+  color: #ffffff;
+  background: #ffaa4e;
 }
 .nav-sidebar > .active > a,
 .nav-sidebar > .active > a:hover,
 .nav-sidebar > .active > a:focus {
-  color: #222222;
-  background-color: #f05a27;
+  color: #ffffff;
+  background-color: #ffaa4e;
 }
 .page-header {
   margin: 20px 0 20px;
@@ -53,7 +63,7 @@ body {
   font-size: 14pt;
 }
 .colored-icon {
-  color: #f05a27;
+  color: #ffaa4e;
 }
 .well {
   color: black;
@@ -64,21 +74,21 @@ body {
 .well textarea {
   width: 100%;
   height: 100px;
-  border-color: #f05a27;
+  border-color: #ffaa4e;
 }
 .center-column {
   float: none !important;
   margin: 0 auto !important;
 }
 .login-well {
-  margin-top: 25px;
+  margin-top: 50%;
 }
 .login-well input {
-  margin-top: 10px;
+  margin-top: 20px;
 }
 .login-well input[type="submit"] {
   display: block;
-  margin: 10px auto 0;
+  margin: 20px auto 0;
 }
 table#stores_table {
   color: black;

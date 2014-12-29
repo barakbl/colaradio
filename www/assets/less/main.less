@@ -4,12 +4,20 @@ body {
   background: @background;
   color: @text;
 }
-.navbar-brand {
-  &.wiser-icon {
-    background: url('../img/wiser_icon.png') no-repeat 5px center;
-    background-size: 40px;
-    padding-left: 50px;
+.navbar-inverse {
+  background: @header-color !important;
+  border: 0;
+  .navbar-brand {
+    padding-left: 20px;
     color: white;
+  }
+}
+.btn-orange {
+  background: @btn-orange;
+  border-color: darken(@btn-orange,20%);
+  color: #ffffff;
+  &:hover {
+    color: darken(@btn-orange,20%);
   }
 }
 .sidebar {
@@ -34,9 +42,9 @@ body {
   padding-left: 20px;
   color: @sidebar-selection;
   &:hover,&:focus {
-  color: @background;
-  background: @sidebar-selection;
-}
+    color: @background;
+    background: @sidebar-selection;
+  }
 }
 .nav-sidebar > .active > a,
 .nav-sidebar > .active > a:hover,
@@ -73,12 +81,12 @@ body {
 }
 
 .login-well {
-  margin-top: 25px;
+  margin-top: 50%;
   input {
-    margin-top: 10px;
+    margin-top: 20px;
     &[type="submit"] {
       display: block;
-      margin: 10px auto 0;
+      margin: 20px auto 0;
     }
   }
 }
