@@ -27,7 +27,7 @@
   color: #999999;
 }
 .tt-dropdown-menu {
-  width: 100%;
+  width: 900px;
   margin-top: 0px;
   padding: 8px 0;
   background-color: #fff;
@@ -48,7 +48,7 @@
   cursor: pointer;
 }
 .tt-input {
-  margin-right: 50px;
+  margin-right: 0;
 }
 #pli-perform-search {
   background: #0043ff;

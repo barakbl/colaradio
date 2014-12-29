@@ -11,13 +11,26 @@ body {
   padding-left: 20px;
   color: white;
 }
+.navbar-inverse .nav-right {
+  float: right;
+  font-size: 14pt;
+  line-height: 50px;
+}
+.navbar-inverse .nav-right a {
+  color: #000000;
+}
 .btn-orange {
   background: #ffaa4e;
   border-color: #e77800;
   color: #ffffff;
 }
 .btn-orange:hover {
-  color: #e77800;
+  background: #ffb462;
+  color: #ffffff;
+}
+.btn-orange:active {
+  background: #ff9b2f;
+  color: #ffffff;
 }
 .main {
   padding-top: 10px;

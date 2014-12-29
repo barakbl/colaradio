@@ -11,13 +11,26 @@ body {
     padding-left: 20px;
     color: white;
   }
+  .nav-right {
+    float: right;
+    font-size: 14pt;
+    line-height: 50px;
+    a {
+      color: #000000;
+    }
+  }
 }
 .btn-orange {
   background: @btn-orange;
   border-color: darken(@btn-orange,20%);
   color: #ffffff;
   &:hover {
-    color: darken(@btn-orange,20%);
+    background: lighten(@btn-orange,4%);
+    color: #ffffff;
+  }
+  &:active {
+    background: darken(@btn-orange,6%);
+    color: #ffffff;
   }
 }
 .main {
