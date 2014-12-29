@@ -29,6 +29,7 @@ class Rooms {
     public function getId() { return $this->id; }
     public function getName() { return $this->name; }
     public function setMotd($content) {  $this->motd = $content; }
+    public function getMotd() { return $this->motd; }
 
 
 }
