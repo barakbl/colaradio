@@ -46,6 +46,8 @@
   font-size: 18px;
   line-height: 24px;
   cursor: pointer;
+  float: left;
+  width: 33.3%;
 }
 .tt-suggestion.tt-cursor {
   color: #fff;
