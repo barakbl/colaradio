@@ -4,10 +4,15 @@
 {% endblock %}
 {% block content %}
 
+    <input id="pli-search" class="typeahead" type="text" placeholder="Add a song to the playlist"/>
 
-
-
-
+{% endblock %}
+{% block body_scripts %}
+    <script src="{{ app.asset_path }}js/typeahead.bundle.js"></script>
+    <script type="text/javascript" src="{{ app.asset_path }}js/youtube-autocomplete.js"></script>
+{% endblock %}
+{% block body_styles %}
+    <link href="{{ app.asset_path }}css/typeahead.bundle.css" rel="stylesheet">
 {% endblock %}
 
 

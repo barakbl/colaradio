@@ -1,5 +1,5 @@
 CREATE DATABASE IF NOT EXISTS colaradio;
-use colaradio;
+USE colaradio;
 
 CREATE TABLE IF NOT EXISTS `playlist_item` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
