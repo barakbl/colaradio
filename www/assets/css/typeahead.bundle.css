@@ -1,7 +1,7 @@
 .typeahead,
 .tt-input,
 .tt-hint {
-  width: 800px;
+  width: 900px;
   height: 30px;
   padding: 20px 12px;
   font-size: 24px;
@@ -27,7 +27,7 @@
   color: #999999;
 }
 .tt-dropdown-menu {
-  width: 800px;
+  width: 100%;
   margin-top: 0px;
   padding: 8px 0;
   background-color: #fff;

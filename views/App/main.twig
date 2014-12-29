@@ -1,18 +1,37 @@
 {% extends 'layout.twig' %}
 {% block content %}
-<div class="container">
-    <div id="search-container">
-        <input id="pli-search" class="typeahead" type="text" placeholder="Add a song to the playlist"/>
-    </div>
-    <div class="col-md-6">
-        {% include 'App/playlist.twig' %}
-    </div>
-    <div class="col-md-6">
-        <div class="player-container">
-            <div id="player"></div>
+    <div class="container">
+        <div id="search-container">
+            {#<input id="pli-search" class="typeahead" type="text" placeholder="Add a song to the playlist"/>#}
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <div class="controllers-container">
+                    <span class="controller pre"><span class="glyphicon glyphicon glyphicon-chevron-left"></span></span>
+                    <span class="controller status pause">
+                        <span class="glyphicon glyphicon-play"></span>
+                        <span class="glyphicon glyphicon-pause"></span>
+                    </span>
+                    <span class="controller next"><span class="glyphicon glyphicon glyphicon-chevron-right"></span></span>
+                </div>
+            </div>
+            <div class="col-md-10">
+                <div id="search-container">
+                    <input id="pli-search" class="typeahead" type="text" placeholder="Add a song to the playlist"/>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                {% include 'App/playlist.twig' %}
+            </div>
+            <div class="col-md-6">
+                <div class="player-container">
+                    <div id="player"></div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
 {% endblock %}
 {% block body_scripts %}
     <script type="text/javascript" src="{{ app.asset_path }}/js/utils.js"></script>

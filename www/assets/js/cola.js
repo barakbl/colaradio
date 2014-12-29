@@ -30,6 +30,18 @@ function Cola() {
         }
     };
 
+    this.playSelectedVideo = function(nextSong) {
+        var $currentSong = $('.song.playing');
+        var videoId = this.getVideoIdFromUrl(nextSong.data('videoUrl'));
+
+        $currentSong.removeClass('playing');
+        nextSong.addClass('playing');
+        window.ytPlayer.loadVideoById({
+            videoId: videoId
+        });
+        Cola.playing(true);
+    };
+
     this.playNext = function() {
         var $currentSong = $('.song.playing');
         var $nextSong = $currentSong.next('.song').length ? $currentSong.next('.song') : $('.song:first');
@@ -41,6 +53,7 @@ function Cola() {
         Cola.ytPlayer.loadVideoById({
             videoId: videoId
         });
+        Cola.playing(true);
     };
 
     this.playPrevious = function() {
@@ -55,6 +68,7 @@ function Cola() {
         Cola.ytPlayer.loadVideoById({
             videoId: videoId
         });
+        Cola.playing(true);
     };
 
     this.addItemToPlaylist = function(options) {
@@ -92,16 +106,25 @@ function Cola() {
         var videoId = this.getVideoIdFromApiItem(song);
         return [
             '<li class="song" data-video-url="' + videoId + '"' + (hidden ? ' style="display: none"' : '') + '>',
-                '<div class="song-img" style="background-image: url(\'' + thumbnail + '\')"></div>',
-                    '<div class="song-details">',
-                    '<div class="song-name">' + song.snippet.title.capitalize() + '</div>',
-                '</div>',
+            '<div class="song-img" style="background-image: url(\'' + thumbnail + '\')"></div>',
+            '<div class="song-details">',
+            '<div class="song-name">' + song.snippet.title.capitalize() + '</div>',
+            '</div>',
             '</li>'
         ].join('\n');
     };
 
     this.getVideoIdFromApiItem = function(item) {
         return typeof item.id == 'object' ? item.id.videoId : item.id;
+    };
+
+    this.playing = function(state) {
+        var $button = $('.controller.status');
+        if(!state) {
+            $button.addClass('pause').removeClass('play');
+        }  else {
+            $button.addClass('play').removeClass('pause');
+        }
     }
 }
 window.Cola = new Cola();

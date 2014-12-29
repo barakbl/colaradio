@@ -22,6 +22,9 @@ body {
 .main {
   padding-top: 10px;
 }
+.row {
+  margin-top: 20px;
+}
 .well {
   color: black;
 }
@@ -58,13 +61,14 @@ body {
 .playlist-container .list .song {
   background: #f5f5f5;
   border: 1px solid #e3e3e3;
-  margin: 10px 0;
+  margin: 0 0 10px;
   padding: 5px;
-  cursor: move;
+  cursor: pointer;
+  border-radius: 3px;
 }
 .playlist-container .list .song .song-img {
   display: inline-block;
-  width: 70px;
+  width: 100px;
   height: 70px;
   border: 1px solid #ffaa4e;
   vertical-align: middle;
@@ -74,22 +78,30 @@ body {
 .playlist-container .list .song:hover {
   background: #f9f9f9;
 }
-.playlist-container .list .song-details {
+.playlist-container .list .song:active {
+  background: #f0f0f0;
+}
+.playlist-container .list .song .song-details {
   display: inline-block;
   vertical-align: top;
   padding-left: 20px;
 }
-.playlist-container .list .song-details .song-name {
-  font-weight: 700;
+.playlist-container .list .song .song-details .song-name {
   font-size: 16pt;
 }
-.playlist-container .list .song-type {
+.playlist-container .list .song.playing {
+  border-color: #ffaa4e !important;
+}
+.playlist-container .list .song.playing .song-details .song-name {
+  font-weight: 700 !important;
+}
+.playlist-container .list .song .song-type {
   display: inline-block;
   float: right;
   height: 70px;
   opacity: 0.4;
 }
-.playlist-container .list .song-type.youtube {
+.playlist-container .list .song .song-type.youtube {
   width: 70px;
   background: url("../img/yt-logo.png") no-repeat center / contain;
 }
@@ -101,6 +113,35 @@ body {
   margin-top: 10px;
 }
 #search-container {
+  text-align: right;
+}
+.controllers-container .controller {
+  display: inline-block;
+  background: #ffaa4e;
+  width: 50px;
+  margin: 0;
+  height: 40px;
   text-align: center;
-  margin-bottom: 20px;
+  line-height: 40px;
+  border-radius: 3px;
+  cursor: pointer;
+  border: 1px solid #ff9b2f;
+}
+.controllers-container .controller:hover {
+  background: #ffb462;
+}
+.controllers-container .controller:active {
+  background: #ff9b2f;
+}
+.controllers-container .controller.status.play .glyphicon-pause {
+  display: inline-block;
+}
+.controllers-container .controller.status.play .glyphicon-play {
+  display: none;
+}
+.controllers-container .controller.status.pause .glyphicon-play {
+  display: inline-block;
+}
+.controllers-container .controller.status.pause .glyphicon-pause {
+  display: none;
 }

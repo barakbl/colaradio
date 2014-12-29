@@ -23,6 +23,9 @@ body {
 .main {
   padding-top: 10px;
 }
+.row {
+  margin-top: 20px;
+}
 .well {
   color: black;
   h3 {
@@ -60,12 +63,13 @@ body {
     .song {
       background: @song-color;
       border: 1px solid @song-border;
-      margin: 10px 0;
+      margin: 0 0 10px;
       padding: 5px;
-      cursor: move;
+      cursor: pointer;
+      border-radius: 3px;
       .song-img {
         display: inline-block;
-        width: 70px;
+        width: 100px;
         height: 70px;
         border: 1px solid @orange;
         vertical-align: middle;
@@ -73,26 +77,36 @@ body {
         background-size: cover;
       }
       &:hover {
-        background: lighten(@song-color,1.5%);
+        background: lighten(@song-color, 1.5%);
       }
-    }
-    .song-details {
-      display: inline-block;
-      vertical-align: top;
-      padding-left: 20px;
-      .song-name {
-        font-weight: 700;
-        font-size: 16pt;
+      &:active {
+        background: darken(@song-color, 2%);
       }
-    }
-    .song-type {
-      display: inline-block;
-      float: right;
-      height: 70px;
-      opacity: 0.4;
-      &.youtube {
-        width: 70px;
-        background: url("../img/yt-logo.png") no-repeat center/contain;
+      .song-details {
+        display: inline-block;
+        vertical-align: top;
+        padding-left: 20px;
+        .song-name {
+          font-size: 16pt;
+        }
+      }
+      &.playing {
+        border-color: @orange !important;
+        .song-details {
+          .song-name {
+            font-weight: 700 !important;
+          }
+        }
+      }
+      .song-type {
+        display: inline-block;
+        float: right;
+        height: 70px;
+        opacity: 0.4;
+        &.youtube {
+          width: 70px;
+          background: url("../img/yt-logo.png") no-repeat center/contain;
+        }
       }
     }
   }
@@ -107,6 +121,36 @@ body {
 }
 
 #search-container {
-  text-align: center;
-  margin-bottom: 20px;
+  text-align: right;
+}
+
+.controllers-container {
+  .controller {
+    display: inline-block;
+    background: #ffaa4e;
+    width: 50px;
+    margin: 0;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 3px;
+    cursor: pointer;
+    border: 1px solid darken(@orange, 6%);
+    &:hover {
+      background: lighten(@orange,4%);
+    }
+    &:active {
+      background: darken(@orange,6%);
+    }
+    &.status {
+      &.play {
+        .glyphicon-pause {display: inline-block;}
+        .glyphicon-play {display: none;}
+      }
+      &.pause {
+        .glyphicon-play {display: inline-block;}
+        .glyphicon-pause {display: none;}
+      }
+    }
+  }
 }
