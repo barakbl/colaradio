@@ -1,13 +1,14 @@
 # config/api.yml
 
 api.add_playlist:
-  path:     /playlist/item/
+  path:     /playlist/item
   defaults: { _controller: 'ColaRadio\ApiController::playlistItemPostAction'}
   methods: [POST]
 
 api.playlist:
   path:     /playlist/{id}
   defaults: { _controller: 'ColaRadio\ApiController::playlistAction'}
+  methods: [GET]
 
 api.my_playlist:
   path:     /playlist/

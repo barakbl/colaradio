@@ -61,8 +61,10 @@ function Cola() {
         var url = '/api/playlist/item';
         var $input = $('#pli-search');
 
+        var videoId = this.getVideoIdFromApiItem(options.song);
+
         var data = {
-            content: 'http://www.youtube.com/watch?v=' + options.song.id,
+            content: 'http://www.youtube.com/watch?v=' + videoId,
             playlist_id: this.playlistId,
             type: 'youtube'
         };
@@ -87,7 +89,7 @@ function Cola() {
         }
         var thumbnail = song.snippet.thumbnails.default.url || 'http://www.nefertititokyo.net/wp-content/uploads/2013/10/6556115-ice-cube-droped-in-cola-glass-and-cola-splashing.jpg';
 
-        var videoId = typeof song.id == 'object' ? song.id.videoId : song.id;
+        var videoId = this.getVideoIdFromApiItem(song);
         return [
             '<li class="song" data-video-url="' + videoId + '"' + (hidden ? ' style="display: none"' : '') + '>',
                 '<div class="song-img" style="background-image: url(\'' + thumbnail + '\')"></div>',
@@ -97,6 +99,10 @@ function Cola() {
             '</li>'
         ].join('\n');
     };
+
+    this.getVideoIdFromApiItem = function(item) {
+        return typeof item.id == 'object' ? item.id.videoId : item.id;
+    }
 }
 window.Cola = new Cola();
 
