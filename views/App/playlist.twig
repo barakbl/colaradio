@@ -1,4 +1,3 @@
-{% extends 'layout.twig' %}
 {%  macro item(name,artist,img,type) %}
     <li>
         <div class="song">
@@ -12,18 +11,11 @@
     </li>
 {% endmacro %}
 {% import _self as playlist %}
-{% block content %}
 <div class="playlist-container">
     <ul class="sortable list">
         {{ playlist.item('shitty song','justin bieber','','yt') }}
         {{ playlist.item('let it be','beatles','','yt') }}
+        {{ playlist.item('let it be2','beatles','','yt') }}
+        {{ playlist.item('let it be3','beatles','','yt') }}
     </ul>
 </div>
-{% endblock %}
-
-{% block body_scripts %}
-{{ parent() }}
-    <script>
-        $('.sortable').sortable();
-    </script>
-{% endblock %}

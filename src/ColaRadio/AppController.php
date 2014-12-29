@@ -21,6 +21,6 @@ class AppController
         ));
     }
     public function playlistAction(Application $app) {
-        return $app['twig']->render('App/playlist.twig');
+        return $app['twig']->render('App/main.twig');
     }
 }
