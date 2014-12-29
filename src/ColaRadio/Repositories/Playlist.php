@@ -11,8 +11,10 @@ class Playlist extends EntityRepository {
     /**
      * @return array
      */
-    public function getPlatlistItems() {
-        return array();
+    public function getData() {
+        return array('d');
     }
+
+
 
 }

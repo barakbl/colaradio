@@ -17,31 +17,38 @@ class ApiController
         $obj = array();
 
         $token = $app['security']->getToken();
+        $playlistId = 1;
         if (null !== $token) {
-
             $user = $token->getUser();
-            echo "<pre>";
-            print_r($user);die;
+
 
         } else {
             return $app->json("Access Denied", 401);
         }
         $result = $app['db.orm.em']
-            ->find('ColaRadio\Entity\Playlist',2);
+            ->find('ColaRadio\Entity\Playlist',$playlistId);
 
-        echo "<pre>";
+        $items = array();
 
-        print_r($result->getRoom()->getName());
-        die;
-        $result = $app['db.orm.em']
-            ->getRepository('ColaRadio\Entity\Playlist')
-            ->createQueryBuilder('e')
-            ->select('e')
-            ->getQuery()
-            ->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);
 
-        echo "<pre>";
-        print_r($result);die;
+        $itemsRes = $app['db.orm.em']->getRepository('ColaRadio\Entity\PlaylistItem')
+            ->findBy(array('playlist_id' => $playlistId,'is_deleted' => 0)
+            );
+
+        foreach($itemsRes as $item) {
+            $items[] = array(
+                'id' => $item->getId(),
+                'type' => $item->getType(),
+                'content' => $item->getContent(),
+            );
+        }
+
+        $obj = array(
+            'id' => $result->getId(),
+            'name' => $result->getName(),
+            'description' => $result->getDescription(),
+            'items' => $items
+        );
         return  $app->json($obj);
     }
 

@@ -7,7 +7,8 @@ namespace ColaRadio\Entity;
  * @Table(name="playlists")
  * @ManyToOne(targetEntity="Rooms")
  * @JoinColumn(name="room_id", referencedColumnName="id")
- *
+ * *@ManyToOne(targetEntity="PlaylistItem")
+ * @JoinColumn(name="id", referencedColumnName="playlist_id")
  */
 class Playlist {
     /**
@@ -32,5 +33,18 @@ class Playlist {
     /** @ManyToOne(targetEntity="Rooms") */
     private $room;
 
+
+
+
+    public function getName() { return $this->name; }
+    public function getDescription() { return $this->description; }
+    public function getId() { return $this->id; }
+
     public function getRoom() { return $this->room; }
+
+    public function getPlaylistItems() {
+
+
+
+    }
 }
