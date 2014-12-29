@@ -55,18 +55,6 @@
   font-size: 18px;
   line-height: 24px;
   cursor: pointer;
-  float: left;
-  width: 33.3%;
-}
-
-.tt-suggestion.tt-cursor {
-  color: #fff;
-  background-color: @btn-orange;
-
-}
-
-.tt-suggestion p {
-  margin: 0;
 }
 
 .tt-input {
@@ -99,5 +87,29 @@
   .tt-hint,
   .tt-dropdown-menu {
     width: @search-size-sm;
+  }
+}
+
+@media screen and (min-device-width: @screen-sm) {
+  .tt-suggestion {
+    @height: 100px;
+    float: left;
+    width: 33.3%;
+    height: @height;
+    max-height: @height;
+    overflow: hidden;
+    &.tt-cursor {
+      color: #fff;
+      background-color: @btn-orange;
+    }
+    .yt-result- {
+      &thumb {
+        margin-right: 5px;
+        float: left;
+      }
+      &title {
+        font-size: 13pt;
+      }
+    }
   }
 }
