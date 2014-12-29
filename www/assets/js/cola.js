@@ -30,12 +30,15 @@ function Cola() {
         }
     };
 
-    this.playSelectedVideo = function(nextSong) {
+    this.playSelectedVideo = function($nextSong) {
         var $currentSong = $('.song.playing');
-        var videoId = this.getVideoIdFromUrl(nextSong.data('videoUrl'));
+        if ($currentSong[0] == $nextSong[0]) {
+            return Cola.toggle();
+        }
+        var videoId = this.getVideoIdFromUrl($nextSong.data('videoUrl'));
 
         $currentSong.removeClass('playing');
-        nextSong.addClass('playing');
+        $nextSong.addClass('playing');
         Cola.ytPlayer.loadVideoById({
             videoId: videoId
         });
@@ -59,7 +62,6 @@ function Cola() {
     this.playPrevious = function() {
         var $currentSong = $('.song.playing');
         var $nextSong = $currentSong.prev('.song').length ? $currentSong.prev('.song') : $('.song:last');
-        console.log($nextSong);
         var videoId = this.getVideoIdFromUrl($nextSong.data('videoUrl'));
 
         $currentSong.removeClass('playing');
@@ -127,6 +129,24 @@ function Cola() {
             $button.addClass('pause').removeClass('play');
         }  else {
             $button.addClass('play').removeClass('pause');
+        }
+    };
+
+    this.pause = function() {
+        Cola.ytPlayer.pauseVideo();
+        Cola.playing(false);
+    };
+
+    this.play = function() {
+        Cola.ytPlayer.playVideo();
+        Cola.playing(true);
+    };
+
+    this.toggle = function() {
+        if (Cola.playing()) {
+            Cola.pause();
+        } else {
+            Cola.play();
         }
     }
 }

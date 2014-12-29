@@ -43,9 +43,9 @@ $(document).ready(function() {
         Cola.playPrevious();
     });
     $('.controllers-container').on('click','.play',function() {
-        Cola.ytPlayer.pauseVideo();
+        Cola.pause();
     });
     $('.controllers-container').on('click','.pause',function() {
-        Cola.ytPlayer.playVideo();
+        Cola.play();
     });
 });

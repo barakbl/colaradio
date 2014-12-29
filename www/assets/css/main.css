@@ -85,6 +85,7 @@ body {
   display: inline-block;
   vertical-align: top;
   padding-left: 20px;
+  max-width: calc(-4%);
 }
 .playlist-container .list .song .song-details .song-name {
   font-size: 16pt;
