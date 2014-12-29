@@ -120,7 +120,10 @@ function Cola() {
 
     this.playing = function(state) {
         var $button = $('.controller.status');
-        if(!state) {
+        if (typeof state === 'undefined') {
+            return $button.hasClass('play');
+        }
+        if(state) {
             $button.addClass('pause').removeClass('play');
         }  else {
             $button.addClass('play').removeClass('pause');

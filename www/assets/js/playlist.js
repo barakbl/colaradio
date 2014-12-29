@@ -41,10 +41,10 @@ $(document).ready(function() {
     $('.controller.pre').on('click',function() {
         Cola.playPrevious();
     });
-    $('.controller.pause').on('click',function() {
+    $('.controllers-container').on('click','.play',function() {
         Cola.ytPlayer.pauseVideo();
     });
-    $('.controller.play').on('click',function() {
+    $('.controllers-container').on('click','.pause',function() {
         Cola.ytPlayer.playVideo();
     });
 });
