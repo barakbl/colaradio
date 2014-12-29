@@ -84,3 +84,6 @@ body {
   width: 70px;
   background: url("../img/yt-logo.png") no-repeat bottom / contain;
 }
+#search-container {
+  text-align: center;
+}

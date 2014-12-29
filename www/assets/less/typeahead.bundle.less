@@ -1,14 +1,15 @@
 @import (reference) "colors";
+@import (reference) "sizes";
 
 .typeahead,
 .tt-input,
 .tt-hint {
-  width: 606px;
+  width: @search-size-md;
   height: 30px;
   padding: 20px 12px;
   font-size: 24px;
   line-height: 30px;
-  border: 2px solid #ccc;
+  border: 1px solid #ccc;
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
   border-radius: 8px;
@@ -20,7 +21,7 @@
 }
 
 .typeahead:focus {
-  border: 2px solid @btn-orange;
+  border-color: @btn-orange;
 }
 
 .tt-input {
@@ -34,7 +35,7 @@
 }
 
 .tt-dropdown-menu {
-  width: 606px;
+  width: @search-size-md;
   margin-top: 0px;
   padding: 8px 0;
   background-color: #fff;
@@ -46,12 +47,14 @@
   -webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
   -moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
   box-shadow: 0 5px 10px rgba(0,0,0,.2);
+  text-align: left;
 }
 
 .tt-suggestion {
   padding: 3px 20px;
   font-size: 18px;
   line-height: 24px;
+  cursor: pointer;
 }
 
 .tt-suggestion.tt-cursor {
@@ -62,4 +65,37 @@
 
 .tt-suggestion p {
   margin: 0;
+}
+
+.tt-input {
+  margin-right: 50px;
+}
+
+#pli-perform-search {
+  .gradient(@search-button, darken(@search-button, 3%));
+  position: relative;
+  left: -98px;
+  top: 10px;
+  height: 42px;
+  border-radius: 0 8px 8px 0;
+  &:hover {
+    .gradient(lighten(@search-button, 5%), @search-button);
+  }
+  .icon-search {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: url(../img/search.png) no-repeat center/cover;
+    margin-top: 5px;
+    margin-left: -1px;
+  }
+}
+
+@media screen and (max-device-width: @screen-sm) {
+  .typeahead,
+  .tt-input,
+  .tt-hint,
+  .tt-dropdown-menu {
+    width: @search-size-sm;
+  }
 }

@@ -11,7 +11,6 @@ $(document).ready(function() {
             filter: function(data) {
                 var items = [];
                 for (var item in data[1]) {
-                    console.log(data[1][item]);
                     items.push(data[1][item][0]);
                 }
                 return items;
@@ -28,4 +27,37 @@ $(document).ready(function() {
         limit: 10,
         source: youtubeSuggestions.ttAdapter()
     });
+
+    $input.on('typeahead:selected', function() {
+        $('#search').trigger('submit');
+    });
+
+    $('#search').submit(function(e) {
+        e.preventDefault();
+
+        var url = 'https://www.googleapis.com/youtube/v3/search';
+        var data = {
+            key: apiKey,
+            part: 'snippet',
+            q: $input.val(),
+            maxResults: 9
+        };
+
+        $.get(url, data)
+            .done(function(data) {
+                if (data.items.length > 0) {
+                    $.each(data.items, function (i, item) {
+                        console.log('http://www.youtube.com/watch?v=' + item.id.videoId);
+                        // item.id.videoId
+                        // item.snippet.title
+                        // item.snippet.channelTitle
+                        // item.snippet.channelId
+                        // item.snippet.thumbnails.high.url
+                    });
+                }
+            })
+        ;
+
+    });
+
 });

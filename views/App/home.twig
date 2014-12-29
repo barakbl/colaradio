@@ -4,15 +4,23 @@
 {% endblock %}
 {% block content %}
 
-    <input id="pli-search" class="typeahead" type="text" placeholder="Add a song to the playlist"/>
+    <div id="search-container">
+        <form id="search">
+            <input id="pli-search" class="typeahead" type="text" placeholder="Add a song to the playlist"/>
+            <button id="pli-perform-search" class="btn btn-primary">
+                <span class="icon-search"></span>
+                <span class="sr-only">Search</span>
+            </button>
+        </form>
+    </div>
 
 {% endblock %}
 {% block body_scripts %}
-    <script src="{{ app.asset_path }}js/typeahead.bundle.js"></script>
-    <script type="text/javascript" src="{{ app.asset_path }}js/youtube-autocomplete.js"></script>
+    <script src="{{ app.asset_path }}/js/typeahead.bundle.js"></script>
+    <script type="text/javascript" src="{{ app.asset_path }}/js/youtube-autocomplete.js"></script>
 {% endblock %}
 {% block body_styles %}
-    <link href="{{ app.asset_path }}css/typeahead.bundle.css" rel="stylesheet">
+    <link href="{{ app.asset_path }}/css/typeahead.bundle.css" rel="stylesheet">
 {% endblock %}
 
 
