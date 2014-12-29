@@ -5,6 +5,8 @@ namespace ColaRadio\Entity;
 /**
  * @Entity (repositoryClass="ColaRadio\Repositories\PlaylistItem")
  * @Table(name="playlist_item")
+ * @ManyToOne(targetEntity="Playlist")
+ * @JoinColumn(name="playlist_id", referencedColumnName="id")
  */
 class PlaylistItem {
     /**
@@ -14,7 +16,7 @@ class PlaylistItem {
     private $id;
 
     /**
-     * @Id @Column(type="integer")
+     * @Column(type="integer")
      */
     private $playlist_id;
 
@@ -36,14 +38,10 @@ class PlaylistItem {
      */
     private $is_deleted;
 
-    /**
-     *  @Column(datetime)
-     */
-    private $created_at;
+    public function getName() { return $this->name; }
+    public function getContent() { return $this->content; }
+    public function getId() { return $this->id; }
+    public function getType() { return $this->type; }
 
-    /**
-     *  @Column(datetime)
-     */
-    private $last_update;
 
 }

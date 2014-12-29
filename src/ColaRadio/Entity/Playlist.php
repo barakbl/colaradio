@@ -4,7 +4,11 @@ namespace ColaRadio\Entity;
 
 /**
  * @Entity (repositoryClass="ColaRadio\Repositories\Playlist")
- * @Table(name="playlist")
+ * @Table(name="playlists")
+ * @ManyToOne(targetEntity="Rooms")
+ * @JoinColumn(name="room_id", referencedColumnName="id")
+ * *@ManyToOne(targetEntity="PlaylistItem")
+ * @JoinColumn(name="id", referencedColumnName="playlist_id")
  */
 class Playlist {
     /**
@@ -14,7 +18,7 @@ class Playlist {
     private $id;
 
     /**
-     * @Id @Column(type="integer")
+     *  @Column(type="integer")
      */
     private $room_id;
 
@@ -26,14 +30,21 @@ class Playlist {
      */
     private $description;
 
-    /**
-     *  @Column(datetime)
-     */
-    private $created_at;
+    /** @ManyToOne(targetEntity="Rooms") */
+    private $room;
 
-    /**
-     *  @Column(datetime)
-     */
-    private $last_update;
 
+
+
+    public function getName() { return $this->name; }
+    public function getDescription() { return $this->description; }
+    public function getId() { return $this->id; }
+
+    public function getRoom() { return $this->room; }
+
+    public function getPlaylistItems() {
+
+
+
+    }
 }

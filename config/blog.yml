@@ -1,5 +1,0 @@
-# blog.yml
-
-blog.home:
-  path:     /
-  defaults: { _controller: 'ColaRadio\BlogController::homeAction' }
