@@ -34,6 +34,7 @@ $(document).ready(function() {
     $('.playlist-container').on('click', '.song', function() {
         Cola.playSelectedVideo($(this));
     });
+
     //Controllers
     $('.controller.next').on('click',function() {
         Cola.playNext();
@@ -41,10 +42,10 @@ $(document).ready(function() {
     $('.controller.pre').on('click',function() {
         Cola.playPrevious();
     });
-    $('.controller.pause').on('click',function() {
+    $('.controllers-container').on('click','.play',function() {
         Cola.ytPlayer.pauseVideo();
     });
-    $('.controller.play').on('click',function() {
+    $('.controllers-container').on('click','.pause',function() {
         Cola.ytPlayer.playVideo();
     });
 });

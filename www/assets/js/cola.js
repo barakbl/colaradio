@@ -36,7 +36,7 @@ function Cola() {
 
         $currentSong.removeClass('playing');
         nextSong.addClass('playing');
-        window.ytPlayer.loadVideoById({
+        Cola.ytPlayer.loadVideoById({
             videoId: videoId
         });
         Cola.playing(true);
@@ -120,7 +120,10 @@ function Cola() {
 
     this.playing = function(state) {
         var $button = $('.controller.status');
-        if(!state) {
+        if (typeof state === 'undefined') {
+            return $button.hasClass('play');
+        }
+        if(state) {
             $button.addClass('pause').removeClass('play');
         }  else {
             $button.addClass('play').removeClass('pause');
