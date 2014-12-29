@@ -72,6 +72,7 @@ $app->register(new Silex\Provider\SecurityServiceProvider(), array(
 $app->boot();
 $app->register(new Silex\Provider\UrlGeneratorServiceProvider());
 
+
 $app['routes'] = $app->extend('routes', function (RouteCollection $routes, Application $app) {
     $loader = new YamlFileLoader(new FileLocator(__DIR__ . '/../config'));
     $collection = $loader->load('routes.yml');

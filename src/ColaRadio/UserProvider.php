@@ -22,13 +22,19 @@ class UserProvider implements UserProviderInterface
 
     public function loadUserByUsername($username)
     {
+
         $stmt = $this->conn->executeQuery('SELECT * FROM users WHERE LOWER(username) = ?', array(strtolower($username)));
 
         if (!$user = $stmt->fetch()) {
             throw new UsernameNotFoundException(sprintf('Username "%s" does not exist.', $username));
         }
+        $userid = $user['id'];
+        $userRoomId = $user['room_id'];
+        $user =  new User($user['username'], $user['password'], explode(',', $user['roles']), true, true, true, true);
 
-        return new User($user['username'], $user['password'], explode(',', $user['roles']), true, true, true, true);
+        $user->id = $userid;
+        $user->userRoomId = $userRoomId;
+        return $user;
     }
 
     public function refreshUser(UserInterface $user)
@@ -44,4 +50,19 @@ class UserProvider implements UserProviderInterface
     {
         return $class === 'Symfony\Component\Security\Core\User\User';
     }
+
+    /**
+     * @param $userId
+     * @return array
+     */
+    protected function getUserCustomFields($username)
+    {
+        $customFields = array();
+        $rows = $this->conn->fetchAll('SELECT * FROM ' . $this->conn->quoteIdentifier($this->userCustomFieldsTableName). ' WHERE username = ?', array($username));
+        foreach ($rows as $row) {
+            $customFields[$row['attribute']] = $row['value'];
+        }
+        return $customFields;
+    }
+
 }
