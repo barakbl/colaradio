@@ -32,6 +32,8 @@ class UserProvider implements UserProviderInterface
         $userRoomId = $user['room_id'];
         $user =  new User($user['username'], $user['password'], explode(',', $user['roles']), true, true, true, true);
 
+
+
         $user->id = $userid;
         $user->userRoomId = $userRoomId;
         return $user;

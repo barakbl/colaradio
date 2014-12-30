@@ -101,11 +101,21 @@ class ApiController
             $list->setUserId(1);
             $list->setIsDeleted(0);
 
+
+
             $list->setType($type);
             $app['db.orm.em']->persist($list);
             $app['db.orm.em']->flush();
 
-            return $app->json($list);
+            $result = $app['db.orm.em']->getRepository('ColaRadio\Entity\PlaylistItem')
+                ->findOneBy(array('id' => $list->getId()));
+
+            $res[] = array(
+                'id' => $result->getId(),
+                'type' => $result->getType(),
+                'content' => $result->getContent(),
+            );
+            return $app->json($res);
         } else {
             return $app->json("Access Denied", 401);
         }
