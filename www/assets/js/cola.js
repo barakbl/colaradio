@@ -20,27 +20,23 @@ function Cola() {
                 events: {
                     'onReady': onPlayerReady,
                     'onStateChange': onPlayerStateChange
-                }
+                },
+                playerVars: {}
             };
 
             var stats = Cola.getStats();
             if (stats) {
                 options.videoId = stats.id;
-                options.playerVars = {
-                    start: parseInt(stats.time)
-                };
+                options.playerVars.start = parseInt(stats.time);
 
                 $('.song.playing').removeClass('playing');
                 $('.song[data-video-url*=' + stats.id + ']:first').addClass('playing');
+            } else {
+                $firstSong.addClass('playing');
             }
 
             this.ytPlayer = new YT.Player('player', options);
 
-            if (!stats) {
-                $firstSong.addClass('playing');
-            } else {
-                Cola.ytPlayer.seekTo(parseInt(stats.time));
-            }
             Cola.setStats();
         } else {
             setTimeout(function() {
@@ -108,8 +104,10 @@ function Cola() {
 
         $.post(url, data)
             .done(function() {
-                $('.playlist-container ul').append(Cola.parseYouTubeApiIntoSong(options.song, true));
-                $('.song:hidden').show(300);
+                var $playlistContainer = $('.playlist-container');
+                $playlistContainer.find('ul').append(Cola.parseYouTubeApiIntoSong(options.song, true));
+                $('.song:hidden').show();
+                $playlistContainer.animate({scrollTop: ($playlistContainer[0].scrollHeight - $playlistContainer.height())}, 1000, 'easeInOutQuart')
             })
         ;
     };
