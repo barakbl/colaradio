@@ -3,7 +3,8 @@
  */
 String.prototype.capitalize = function() {
     return this.split(' ').map(function(item) {
-       return item[0].toUpperCase() + item.substr(1);
+        if (!item.length) return '';
+        return item[0].toUpperCase() + item.substr(1);
     }).join(' ');
 };
 
