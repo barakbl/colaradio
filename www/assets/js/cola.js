@@ -7,7 +7,6 @@ function Cola() {
     this.ytPlayer = null;
     this.playlistId = null;
     this.statsInterval = null;
-
     this.playFirst = function() {
         if (this.songListReady) {
             var $firstSong = $('.song:first');
@@ -105,7 +104,7 @@ function Cola() {
         $.post(url, data)
             .done(function() {
                 var $playlistContainer = $('.playlist-container');
-                $playlistContainer.find('ul').append(Cola.parseYouTubeApiIntoSong(options.song, true));
+                $playlistContainer.find('ul').append(Cola.parseYouTubeApiIntoSong(null, options.song, true));
                 $('.song:hidden').show();
                 $playlistContainer.animate({scrollTop: ($playlistContainer[0].scrollHeight - $playlistContainer.height())}, 1000, 'easeInOutQuart')
             })
@@ -116,7 +115,7 @@ function Cola() {
         return url && url.replace(/https?/, '').replace('://www.youtube.com/watch?v=', '') || '';
     };
 
-    this.parseYouTubeApiIntoSong = function(song, hidden) {
+    this.parseYouTubeApiIntoSong = function(id, song, hidden) {
         if (typeof hidden === 'undefined') {
             hidden = false;
         }
@@ -124,7 +123,9 @@ function Cola() {
 
         var videoId = this.getVideoIdFromApiItem(song);
         return [
-            '<li class="song" data-video-url="' + videoId + '"' + (hidden ? ' style="display: none"' : '') + '>',
+            '<li class="song"',
+            'data-video-id="' + id + '"',
+            'data-video-url="' + videoId + '"' + (hidden ? ' style="display: none"' : '') + '>',
             '<div class="song-img" style="background-image: url(\'' + thumbnail + '\')"></div>',
             '<div class="song-details">',
             '<div class="song-name">' + song.snippet.title.capitalize() + '</div>',
@@ -169,10 +170,12 @@ function Cola() {
 
     this.setStats = function() {
         Cola.statsInterval = window.setInterval(function() {
-            var date = new Date();
-            var expiry = date.setHours(date.getHours() + 1);
-            document.cookie = 'video_id=' + $('.song.playing').data('videoUrl') + '; expires=' + expiry;
-            document.cookie = 'video_time=' + Cola.ytPlayer.getCurrentTime();
+            if (typeof Cola.ytPlayer === 'object' && Cola.ytPlayer.hasOwnProperty('getCurrentTime')) {
+                var date = new Date();
+                var expiry = date.setDate(date.getDate() + 7);
+                document.cookie = 'video_id=' + $('.song.playing').data('videoUrl') + '; expires=' + expiry;
+                document.cookie = 'video_time=' + Cola.ytPlayer.getCurrentTime();
+            }
         }, 1000);
     };
 

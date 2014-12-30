@@ -4,13 +4,17 @@
 $(document).ready(function() {
     $.getJSON('/api/playlist')
         .done(function(apiData) {
+
+            $('#well').text(apiData.room.motd).show(300);
+
             Cola.playlistId = apiData.id;
-            var ids = [];
+            var videoIds = [], internalIds = [];
             for (var j in apiData.items) {
-                ids.push(Cola.getVideoIdFromUrl(apiData.items[j].content))
+                internalIds.push(apiData.items[j].id);
+                videoIds.push(Cola.getVideoIdFromUrl(apiData.items[j].content))
             }
             var params = {
-                id: ids.join(','),
+                id: videoIds.join(','),
                 key: Cola.apiKey,
                 part: 'snippet'
             };
@@ -18,9 +22,8 @@ $(document).ready(function() {
             $.getJSON('https://www.googleapis.com/youtube/v3/videos', params)
                 .done(function(data) {
                     for (var i in data.items) {
-                        var song = data.items.hasOwnProperty(i) && data.items[i];
                         $('.playlist-container ul').append(function() {
-                            return Cola.parseYouTubeApiIntoSong(song);
+                            return Cola.parseYouTubeApiIntoSong(internalIds[i], data.items[i]);
                         });
                     }
                     Cola.songListReady = true;
