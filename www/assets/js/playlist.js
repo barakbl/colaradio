@@ -6,11 +6,11 @@ $(document).ready(function() {
         .done(function(apiData) {
 
             $('#motd').text(apiData.room.motd).show(300);
+            $('#loading-playlist').slideUp(300);
 
             Cola.playlistId = apiData.id;
-            var videoIds = [], internalIds = [];
+            var videoIds = [];
             for (var j in apiData.items) {
-                internalIds.push(apiData.items[j].id);
                 videoIds.push(Cola.getVideoIdFromUrl(apiData.items[j].content))
             }
             var params = {
@@ -23,17 +23,51 @@ $(document).ready(function() {
                 .done(function(data) {
                     for (var i in data.items) {
                         $('.playlist-container ul').append(function() {
-                            return Cola.parseYouTubeApiIntoSong(internalIds[i], data.items[i]);
+                            return Cola.parseYouTubeApiIntoSong(apiData.items[i], data.items[i]);
                         });
                     }
                     Cola.songListReady = true;
+                    $('.playlist-container .list').slideDown(1000);
                 })
             ;
         })
     ;
-    $('.playlist-container').on('click', '.song', function() {
-        Cola.playSelectedVideo($(this));
-    });
+    $('.playlist-container')
+        .on('click', '.song:not(.disabled)', function() {
+            Cola.playSelectedVideo($(this));
+        })
+        .on('click', '.song-delete', function(e) {
+            e.stopPropagation();
+
+            var $song = $(this).closest('.song');
+            if (window.userId == parseInt($song.data('userId'))) {
+                var apiVideoId = $song.data('id');
+                $.ajax('/api/playlist/item', {
+                    method: 'DELETE',
+                    data: {
+                        id: apiVideoId
+                    }
+                })
+                    .done(function () {
+                        $song.slideUp(400).fadeOut(300);
+                    });
+            } else {
+                $song.addClass('disabled');
+                $song.find('.song-delete').fadeOut(200, function() {
+                    $song.find('.song-undelete').fadeIn(200);
+                })
+            }
+        })
+        .on('click', '.song-undelete', function(e) {
+            e.stopPropagation();
+
+            var $song = $(this).closest('.song');
+            $song.removeClass('disabled');
+            $song.find('.song-undelete').fadeOut(200, function() {
+                $song.find('.song-delete').fadeIn(200);
+            })
+        })
+    ;
 
     //Controllers
     $('.controller.next').on('click',function() {

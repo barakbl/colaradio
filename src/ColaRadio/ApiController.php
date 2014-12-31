@@ -41,6 +41,7 @@ class ApiController
                 'id' => $item->getId(),
                 'type' => $item->getType(),
                 'content' => $item->getContent(),
+                'user_id' => $item->getUserId(),
             );
         }
 
@@ -55,6 +56,7 @@ class ApiController
         $obj = array(
             'id' => $result->getId(),
             'name' => $result->getName(),
+            'user_id' => intval($user->id),
             'description' => $result->getDescription(),
             'items' => $items,
             'room' => $roomData

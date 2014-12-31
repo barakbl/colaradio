@@ -9,7 +9,7 @@ function Cola() {
     this.statsInterval = null;
     this.playFirst = function() {
         if (this.songListReady) {
-            var $firstSong = $('.song:first');
+            var $firstSong = $('.song:not(.disabled):first');
             var videoId = this.getVideoIdFromUrl($firstSong.data('videoUrl'));
 
             var options = {
@@ -30,7 +30,7 @@ function Cola() {
 
                 $('.song.playing').removeClass('playing');
 
-                var $savedVideo = $('.song[data-video-url*=' + stats.id + ']:first');
+                var $savedVideo = $('.song[data-video-url*=' + stats.id + ']:not(.disabled):first');
                 if ($savedVideo.length) {
                     $savedVideo.addClass('playing');
                 } else {
@@ -68,7 +68,7 @@ function Cola() {
 
     this.playNext = function() {
         var $currentSong = $('.song.playing');
-        var $nextSong = $currentSong.next('.song').length ? $currentSong.next('.song') : $('.song:first');
+        var $nextSong = $currentSong.nextAll('.song:not(.disabled):first').length ? $currentSong.nextAll('.song:not(.disabled):first') : $('.song:not(.disabled):first');
         var videoId = this.getVideoIdFromUrl($nextSong.data('videoUrl'));
 
         $currentSong.removeClass('playing');
@@ -82,7 +82,7 @@ function Cola() {
 
     this.playPrevious = function() {
         var $currentSong = $('.song.playing');
-        var $nextSong = $currentSong.prev('.song').length ? $currentSong.prev('.song') : $('.song:last');
+        var $nextSong = $currentSong.prevAll('.song:not(.disabled):first').length ? $currentSong.prevAll('.song:not(.disabled):first') : $('.song:not(.disabled):last');
         var videoId = this.getVideoIdFromUrl($nextSong.data('videoUrl'));
 
         $currentSong.removeClass('playing');
@@ -110,9 +110,15 @@ function Cola() {
 
         $.post(url, data)
             .done(function(newSong) {
-                newSong = JSON.parse(newSong);
+
+                if (typeof newSong !== 'object')
+                    newSong = JSON.parse(newSong);
+
+                if (newSong.hasOwnProperty('0'))
+                    newSong = newSong[0];
+
                 var $playlistContainer = $('.playlist-container');
-                $playlistContainer.find('ul').append(Cola.parseYouTubeApiIntoSong(newSong.id, options.song, true));
+                $playlistContainer.find('ul').append(Cola.parseYouTubeApiIntoSong(newSong, options.song, true));
                 $('.song:hidden').show();
                 $playlistContainer.animate({scrollTop: ($playlistContainer[0].scrollHeight - $playlistContainer.height())}, 1000, 'easeInOutQuart')
             })
@@ -123,7 +129,7 @@ function Cola() {
         return url && url.replace(/https?/, '').replace('://www.youtube.com/watch?v=', '') || '';
     };
 
-    this.parseYouTubeApiIntoSong = function(id, song, hidden) {
+    this.parseYouTubeApiIntoSong = function(api, song, hidden) {
         if (typeof hidden === 'undefined') {
             hidden = false;
         }
@@ -132,8 +138,11 @@ function Cola() {
         var videoId = this.getVideoIdFromApiItem(song);
         return [
             '<li class="song"',
-            'data-video-id="' + id + '"',
+            'data-video-id="' + api.id + '"',
+            'data-video-user-id="' + api.user_id + '"',
             'data-video-url="' + videoId + '"' + (hidden ? ' style="display: none"' : '') + '>',
+            '<span class="song-delete glyphicon glyphicon-remove"></span>',
+            '<span class="song-undelete glyphicon glyphicon-plus"></span>',
             '<div class="song-img" style="background-image: url(\'' + thumbnail + '\')"></div>',
             '<div class="song-details">',
             '<div class="song-name">' + song.snippet.title.capitalize() + '</div>',

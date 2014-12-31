@@ -1,4 +1,20 @@
 @import "colors";
+
+.glyphicon-refresh-animate {
+  animation: spin .7s infinite linear;
+  -webkit-animation: spin2 .7s infinite linear;
+}
+
+@-webkit-keyframes spin2 {
+  from { -webkit-transform: rotate(0deg);}
+  to { -webkit-transform: rotate(360deg);}
+}
+
+@keyframes spin {
+  from { transform: scale(1) rotate(0deg);}
+  to { transform: scale(1) rotate(360deg);}
+}
+
 body {
   padding-top: 50px;
   background: @background;
@@ -75,6 +91,7 @@ body {
   max-height: 500px;
   overflow-y: auto;
   .list {
+    display: none;
     list-style: none;
     padding: 0;
     .song {
@@ -84,6 +101,20 @@ body {
       padding: 5px;
       cursor: pointer;
       border-radius: 3px;
+      min-height: 29px;
+      &.disabled {
+        opacity: .4;
+        cursor: default;
+        .song-details .song-name {
+          font-size: 12pt;
+        }
+        .song-img {
+          height: 20px;
+        }
+        .song-undelete {
+          cursor: pointer;
+        }
+      }
       .song-img {
         display: inline-block;
         width: 100px;
@@ -92,6 +123,7 @@ body {
         vertical-align: middle;
         background-repeat: no-repeat;
         background-size: cover;
+        transition: height 300ms;
       }
       &:hover {
         background: lighten(@song-color, 1.5%);
@@ -103,10 +135,26 @@ body {
         display: inline-block;
         vertical-align: top;
         padding-left: 20px;
-        max-width: ~"calc(100% - 104px)";
+        max-width: ~"calc(100% - 124px)";
         .song-name {
           font-size: 16pt;
+          transition: font-size 300ms;
         }
+      }
+      .song-delete {
+        float: right;
+        opacity: .3;
+        &:hover {
+          opacity: .5;
+        }
+        &:active {
+          opacity: .7;
+        }
+      }
+      .song-undelete {
+        float: right;
+        opacity: .3;
+        display: none;
       }
       &.playing {
         border-color: @orange !important;
