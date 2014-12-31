@@ -29,7 +29,14 @@ function Cola() {
                 options.playerVars.start = parseInt(stats.time);
 
                 $('.song.playing').removeClass('playing');
-                $('.song[data-video-url*=' + stats.id + ']:first').addClass('playing');
+
+                var $savedVideo = $('.song[data-video-url*=' + stats.id + ']:first');
+                if ($savedVideo.length) {
+                    $savedVideo.addClass('playing');
+                } else {
+                    $firstSong.addClass('playing');
+                }
+
             } else {
                 $firstSong.addClass('playing');
             }
@@ -102,9 +109,10 @@ function Cola() {
         $input.val('');
 
         $.post(url, data)
-            .done(function() {
+            .done(function(newSong) {
+                newSong = JSON.parse(newSong);
                 var $playlistContainer = $('.playlist-container');
-                $playlistContainer.find('ul').append(Cola.parseYouTubeApiIntoSong(null, options.song, true));
+                $playlistContainer.find('ul').append(Cola.parseYouTubeApiIntoSong(newSong.id, options.song, true));
                 $('.song:hidden').show();
                 $playlistContainer.animate({scrollTop: ($playlistContainer[0].scrollHeight - $playlistContainer.height())}, 1000, 'easeInOutQuart')
             })

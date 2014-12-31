@@ -5,7 +5,7 @@ $(document).ready(function() {
     $.getJSON('/api/playlist')
         .done(function(apiData) {
 
-            $('#well').text(apiData.room.motd).show(300);
+            $('#motd').text(apiData.room.motd).show(300);
 
             Cola.playlistId = apiData.id;
             var videoIds = [], internalIds = [];

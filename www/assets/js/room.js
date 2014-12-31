@@ -3,16 +3,16 @@
  */
 $('.main')
 
-    .on('click', 'div#well', function() {
-        $(this).replaceWith('<textarea class="well well-sm" id="well">' + this.innerHTML + '</textarea>');
-        $('#well').show().trigger('focus');
+    .on('click', 'div#motd', function() {
+        $(this).replaceWith('<textarea class="well well-sm" id="motd">' + this.innerHTML + '</textarea>');
+        $('#motd').show().trigger('focus');
     })
 
-    .on('keyup blur', '#well', $.debounce(800, function() {
+    .on('keyup blur', '#motd', $.debounce(800, function() {
         $.post('/api/motd', { content: $(this).val() });
     }))
 
-    .on('blur', 'textarea#well', function() {
-        $(this).replaceWith('<div class="well well-sm" id="well">' + this.value + '</div>');
-        $('#well').show();
+    .on('blur', 'textarea#motd', function() {
+        $(this).replaceWith('<div class="well well-sm" id="motd">' + this.value + '</div>');
+        $('#motd').show();
     });

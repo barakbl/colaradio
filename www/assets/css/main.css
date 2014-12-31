@@ -39,9 +39,7 @@ body {
   margin-top: 20px;
 }
 .well {
-  display: none;
   color: black;
-  width: 100%;
 }
 .well h3 {
   margin: 0 0 15px;
@@ -51,11 +49,9 @@ body {
   height: 100px;
   border-color: #ffaa4e;
 }
-.well #well-text {
+#motd {
   display: none;
-  border: none;
-  background: none;
-  box-shadow: none;
+  width: 100%;
 }
 .center-column {
   float: none !important;
