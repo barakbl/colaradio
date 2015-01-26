@@ -188,19 +188,17 @@ function Cola() {
     this.setStats = function() {
         Cola.statsInterval = window.setInterval(function() {
             if (typeof Cola.ytPlayer === 'object' && Cola.ytPlayer.hasOwnProperty('getCurrentTime')) {
-                var date = new Date();
-                var expiry = date.setDate(date.getDate() + 7);
-                document.cookie = 'video_id=' + $('.song.playing').data('videoUrl') + '; expires=' + expiry;
-                document.cookie = 'video_time=' + Cola.ytPlayer.getCurrentTime();
+                document.localStorage.setItem('video_id', $('.song.playing').data('videoUrl'));
+                document.localStorage.setItem('video_time', Cola.ytPlayer.getCurrentTime());
             }
         }, 1000);
     };
 
     this.getStats = function() {
-        if (getCookie('video_id') && getCookie('video_time')) {
+        if (document.localStorage.getItem('video_id') && document.localStorage.getItem('video_time')) {
             return {
-                id: getCookie('video_id'),
-                time: getCookie('video_time')
+                id: document.localStorage.getItem('video_id'),
+                time: document.localStorage.getItem('video_time')
             };
         }
         return null;
