@@ -7,6 +7,8 @@ function Cola() {
     this.ytPlayer = null;
     this.playlistId = null;
     this.statsInterval = null;
+    this.songInfoObjectName = 'songInfos';
+
     this.playFirst = function() {
         if (this.songListReady) {
             var $firstSong = $('.song:not(.disabled):first');
@@ -129,7 +131,14 @@ function Cola() {
         return url && url.replace(/https?/, '').replace('://www.youtube.com/watch?v=', '') || '';
     };
 
+    this.getLocalSongInfo = function (id) {
+        var songInfos = window.localStorage.getObject(this.songInfoObjectName);
+        return songInfos && songInfos.hasOwnProperty(id) ? songInfos[id] : null;
+    };
+
     this.parseYouTubeApiIntoSong = function(api, song, hidden) {
+        var songInfo = this.getLocalSongInfo(api.id);
+        var deleted = songInfo && songInfo.deleted;
         if (typeof hidden === 'undefined') {
             hidden = false;
         }
@@ -137,12 +146,12 @@ function Cola() {
 
         var videoId = this.getVideoIdFromApiItem(song);
         return [
-            '<li class="song"',
+            '<li class="song' + (deleted ? ' disabled' : '') + '"',
             'data-video-id="' + api.id + '"',
             'data-video-user-id="' + api.user_id + '"',
             'data-video-url="' + videoId + '"' + (hidden ? ' style="display: none"' : '') + '>',
-            '<span class="song-delete glyphicon glyphicon-remove"></span>',
-            '<span class="song-undelete glyphicon glyphicon-plus"></span>',
+            '<span class="song-delete glyphicon glyphicon-remove"' + (deleted ? ' style="display: none;"' : '') + '></span>',
+            '<span class="song-undelete glyphicon glyphicon-plus"' + (deleted ? ' style="display: block;"' : '') + '></span>',
             '<div class="song-img" style="background-image: url(\'' + thumbnail + '\')"></div>',
             '<div class="song-details">',
             '<div class="song-name">' + song.snippet.title.capitalize() + '</div>',
@@ -188,17 +197,17 @@ function Cola() {
     this.setStats = function() {
         Cola.statsInterval = window.setInterval(function() {
             if (typeof Cola.ytPlayer === 'object' && Cola.ytPlayer.hasOwnProperty('getCurrentTime')) {
-                document.localStorage.setItem('video_id', $('.song.playing').data('videoUrl'));
-                document.localStorage.setItem('video_time', Cola.ytPlayer.getCurrentTime());
+                window.localStorage.setItem('video_id', $('.song.playing').data('videoUrl'));
+                window.localStorage.setItem('video_time', Cola.ytPlayer.getCurrentTime());
             }
         }, 1000);
     };
 
     this.getStats = function() {
-        if (document.localStorage.getItem('video_id') && document.localStorage.getItem('video_time')) {
+        if (window.localStorage.getItem('video_id') && window.localStorage.getItem('video_time')) {
             return {
-                id: document.localStorage.getItem('video_id'),
-                time: document.localStorage.getItem('video_time')
+                id: window.localStorage.getItem('video_id'),
+                time: window.localStorage.getItem('video_time')
             };
         }
         return null;

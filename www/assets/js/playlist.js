@@ -22,9 +22,7 @@ $(document).ready(function() {
             $.getJSON('https://www.googleapis.com/youtube/v3/videos', params)
                 .done(function(data) {
                     for (var i in data.items) {
-                        $('.playlist-container ul').append(function() {
-                            return Cola.parseYouTubeApiIntoSong(apiData.items[i], data.items[i]);
-                        });
+                        $('.playlist-container ul').append(Cola.parseYouTubeApiIntoSong(apiData.items[i], data.items[i]));
                     }
                     Cola.songListReady = true;
                     $('.playlist-container .list').slideDown(1000);
@@ -53,6 +51,12 @@ $(document).ready(function() {
                     });
             } else {
                 $song.addClass('disabled');
+                var songInfos = window.localStorage.getObject(Cola.songInfoObjectName) || {};
+                if (!songInfos[$song.data('videoId')])
+                    songInfos[$song.data('videoId')] = {};
+                songInfos[$song.data('videoId')].deleted = true;
+                window.localStorage.setObject(Cola.songInfoObjectName, songInfos);
+                Delet
                 $song.find('.song-delete').fadeOut(200, function() {
                     $song.find('.song-undelete').fadeIn(200);
                 })
@@ -63,6 +67,13 @@ $(document).ready(function() {
 
             var $song = $(this).closest('.song');
             $song.removeClass('disabled');
+
+            var songInfos = window.localStorage.getObject(Cola.songInfoObjectName) || {};
+            if (!songInfos[$song.data('videoId')])
+                songInfos[$song.data('videoId')] = {};
+            songInfos[$song.data('videoId')].deleted = false;
+            window.localStorage.setObject(Cola.songInfoObjectName, songInfos);
+
             $song.find('.song-undelete').fadeOut(200, function() {
                 $song.find('.song-delete').fadeIn(200);
             })
