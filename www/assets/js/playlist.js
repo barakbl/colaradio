@@ -56,7 +56,7 @@ $(document).ready(function() {
                     songInfos[$song.data('videoId')] = {};
                 songInfos[$song.data('videoId')].deleted = true;
                 window.localStorage.setObject(Cola.songInfoObjectName, songInfos);
-                Delet
+
                 $song.find('.song-delete').fadeOut(200, function() {
                     $song.find('.song-undelete').fadeIn(200);
                 })
@@ -87,10 +87,12 @@ $(document).ready(function() {
     $('.controller.pre').on('click',function() {
         Cola.playPrevious();
     });
-    $('.controllers-container').on('click','.play',function() {
-        Cola.pause();
-    });
-    $('.controllers-container').on('click','.pause',function() {
-        Cola.play();
-    });
+    $('.controllers-container')
+        .on('click','.play',function() {
+            Cola.pause();
+        })
+        .on('click','.pause',function() {
+            Cola.play();
+        })
+    ;
 });
